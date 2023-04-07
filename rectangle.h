@@ -19,13 +19,11 @@ private:
 	int width;
 
 public:
-
 	Rectangle();
 	Rectangle(int w, int l);
 	
 	~Rectangle();
 
-	
 	void SetDim(int w, int l);
 	void SetLength(int l);
 	void SetWidth(int w);
@@ -33,8 +31,6 @@ public:
 	void GetDim(int &w, int &l);
 	int GetLength();
 	int GetWidth();
-	
-
 };
 
 #endif
