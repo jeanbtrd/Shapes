@@ -5,7 +5,7 @@
 ///
 
 #include<iostream>
-#include "Rectangle.h"
+#include "rectangle.h"
 
 /// @brief default constructor 
 Rectangle::Rectangle() {
