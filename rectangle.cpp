@@ -78,14 +78,14 @@ void Rectangle::SetDim(int w, int l)
 /// @param w width in pixels
 int Rectangle::GetWidth()
 {
-
+    return width;
 }
 
 /// @brief get length of the object
 /// @param l length in pixels
 int Rectangle::GetLength()
 {
-
+    return length;
 }
 
 /// @brief get width and length of the object
@@ -93,7 +93,8 @@ int Rectangle::GetLength()
 /// @param l length in pixels
 void Rectangle::GetDim(int &w, int &l)
 {
-
+    w=width;
+    l=length;
 }
 
 
