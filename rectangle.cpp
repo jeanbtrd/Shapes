@@ -81,11 +81,11 @@ void Rectangle::SetLength(int l) {
 void Rectangle::SetDim(int w, int l) {
 
 	SetWidth(w);
-	SetLength(w);
+	SetLength(l);
 }
 
 
-/// @brief set width of the object
+/// @brief get width of the object
 /// @param w width in pixels
 int Rectangle::GetWidth() {
 
@@ -93,14 +93,14 @@ int Rectangle::GetWidth() {
 
 }
 
-/// @brief set length of the object
+/// @brief get length of the object
 /// @param l length in pixels
 int Rectangle::GetLength() {
 
 
 }
 
-/// @brief set width and length of the object
+/// @brief get width and length of the object
 /// @param w width in pixels
 /// @param l length in pixels
 void Rectangle::GetDim(int &w, int &l) {
