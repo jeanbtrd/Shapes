@@ -14,7 +14,7 @@
 #+end_src
 ** Include libraries
 #+begin_src cpp
-#include<iostream>
+#include <iostream>
 
 #include "rectangle.h"
 #+end_src

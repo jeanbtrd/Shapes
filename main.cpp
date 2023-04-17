@@ -3,7 +3,7 @@
   \brief Fiddling with the Rectangle class.
 */
 
-#include<iostream>
+#include <iostream>
 
 #include "rectangle.h"
 
