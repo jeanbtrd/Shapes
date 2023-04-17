@@ -2,5 +2,4 @@
 !*.cpp
 !*.h
 !.gitignore
-!main.org
-!README.md
+!README.org

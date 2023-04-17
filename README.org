@@ -1,5 +1,4 @@
-#+title: Main
-#+export_file_name: README.md
+#+title: Readme
 #+auto_tangle: t
 
 * Main
