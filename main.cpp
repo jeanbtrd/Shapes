@@ -43,4 +43,11 @@ int main()
 	objRectA.GetDim(wToPrint,lToPrint);
 	cout << "Width and length: (" << wToPrint << ", " << lToPrint << ")\n\n";
 
+    /// An object's ending scope causes its destruction
+    {
+        Rectangle objRectC;
+        cout << "Rectangle C is not yet destroyed\n";
+    }
+    cout << "Rectangle C is now destroyed\n";
+
 }

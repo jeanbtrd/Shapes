@@ -78,6 +78,17 @@ The Rectangle B object, called =objRectB=, is created using the *default constru
 	objRectA.GetDim(wToPrint,lToPrint);
 	cout << "Width and length: (" << wToPrint << ", " << lToPrint << ")\n\n";
 #+end_src
+*** Rectangle C
+=objRectC= is created inside a pair of brackets ={  }=, which delimit its /scope/.
+When the compiler encounters the closing bracket the destructor is called to get rid of rectangle C, because we're now moving outside of its scope.
+#+begin_src cpp
+    /// An object's ending scope causes its destruction
+    {
+        Rectangle objRectC;
+        cout << "Rectangle C is not yet destroyed\n";
+    }
+    cout << "Rectangle C is now destroyed\n";
+#+end_src
 *** close
 #+begin_src cpp
 }
