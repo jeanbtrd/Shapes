@@ -1,40 +1,76 @@
+#+title: Main
+#+export_file_name: README.md
+#+auto_tangle: t
+
+* Main
+:properties:
+:header-args: :tangle main.cpp
+:end:
+** Doxygen header
+#+begin_src cpp
 /*!
   \file main.cpp
   \brief Fiddling with the Rectangle class.
 */
-
+#+end_src
+** Include libraries
+#+begin_src cpp
 #include<iostream>
 
 #include "rectangle.h"
-
+#+end_src
+** body
+***  open
+#+begin_src cpp
 int main()
 {
-
+#+end_src
+*** Rectangle A
+The Rectangle A object, called =objRectA=, is created using the *init constructor* giving it specific values for width and length.
+#+begin_src cpp
 	/// Create Rectangle A giving it specific values.
 	/// To do this, the init constructor is called.
 	Rectangle objRectA(10,5);
+#+end_src
 
+=GetWidth= and =GetLength= are used to extract the Rectangle A dimensions just set, which are then sent to =cout= to be displayed.
+#+begin_src cpp
 	/// Get Rectangle A dimensions using "Get" functions.
 	cout << "\nRectangle A:\n";
 	/// test GetWidth:
 	cout << "width: " << objRectA.GetWidth() << "\n";
 	/// test GetLenght:
 	cout << "length: " << objRectA.GetLength() << "\n";
+#+end_src
 
+=SetWidth= changes the Rectangle A width.
+#+begin_src cpp
 	/// Change Rectangle A width using SetWidth.
 	objRectA.SetWidth(4);
 	cout << "New width: " << objRectA.GetWidth() << "\n";
+#+end_src
 
+*** Rectangle B
+The Rectangle B object, called =objRectB=, is created using the *default constructor* so with the default values: 0 and 0.
+#+begin_src cpp
 	/// Create Rectangle B using the default "Rectangle" constructor.
 	/// It will give it the default width and length values: 0 and 0.
 	Rectangle objRectB;
 	cout << "\nRectangle B:\n";
 	cout << "Default values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n";
+#+end_src
 
+=SetDim= is used to give Rectangle B new values.
+#+begin_src cpp
 	/// Set dimensions for the Rectangle B, overwriting the defaults.
 	objRectB.SetDim(3,7);
 	cout << "New values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n\n";
+#+end_src
 
+- =lToPrint= and =wToPrint= integer variables are created and initialized to 0.
+- They are then changed by =GetDim= to the length and width of Rectangle B.
+- Finally they're sent to =cout= to be displayed.
+#+begin_src cpp
 	/// variables to store and then print length and width.
 	/// They're needed by GetDim (indirect addressing).
 	int wToPrint, lToPrint; wToPrint = lToPrint = (int)0;
@@ -42,5 +78,8 @@ int main()
 	/// test GetDim
 	objRectA.GetDim(wToPrint,lToPrint);
 	cout << "Width and length: (" << wToPrint << ", " << lToPrint << ")\n\n";
-
+#+end_src
+*** close
+#+begin_src cpp
 }
+#+end_src
