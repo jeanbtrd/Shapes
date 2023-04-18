@@ -19,7 +19,12 @@ private:
 	int width;
 
 public:
+	/// Default constructor
 	Rectangle();
+	/// Copy constructor
+	Rectangle(Rectangle & R);
+
+	/// Init constructor
 	Rectangle(int w, int l);
 	
 	~Rectangle();

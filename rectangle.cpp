@@ -16,6 +16,16 @@ Rectangle::Rectangle()
 	length = 0;
 }
 
+/// @brief copy constructor
+/// @param R rectangle to copy.
+Rectangle::Rectangle(Rectangle & R)
+{
+	cout << "Rectangle - constructor - copy" << endl;
+
+    width = R.GetWidth();
+    length = R.GetLength();
+}
+
 /// @brief constructor 
 /// @param w width in pixels
 /// @param h length in pixels
