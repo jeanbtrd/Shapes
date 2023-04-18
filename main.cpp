@@ -50,4 +50,7 @@ int main()
     }
     cout << "Rectangle C is now destroyed\n";
 
+    Rectangle objRectD(objRectB);
+    cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
+
 }

@@ -89,6 +89,12 @@ When the compiler encounters the closing bracket the destructor is called to get
     }
     cout << "Rectangle C is now destroyed\n";
 #+end_src
+*** Rectangle D
+=objRectD= is created as a copy of =objRectB=.
+#+begin_src cpp
+    Rectangle objRectD(objRectB);
+    cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
+#+end_src
 *** close
 #+begin_src cpp
 }
