@@ -1,94 +1,16 @@
 #+title: Readme
 #+auto_tangle: t
 
-* Table of Contents :toc_9_gh:
+* Table of Contents :toc:
 - [[#rectangle][Rectangle]]
   - [[#rectangleh][rectangle.h]]
-    - [[#setup][Setup]]
-      - [[#doxygen-header][Doxygen header]]
-      - [[#open-ifndef][open ifndef]]
-      - [[#namespace][namespace]]
-    - [[#body][Body]]
-      - [[#open][open]]
-      - [[#private-descriptors][private descriptors]]
-      - [[#public-descriptors][public descriptors]]
-        - [[#constructors][Constructors]]
-        - [[#operators][operators]]
-        - [[#functions][Functions]]
-    - [[#end][End]]
-      - [[#close-class][close class]]
-      - [[#close-ifndef-endif][close ifndef (endif)]]
   - [[#rectanglecpp][rectangle.cpp]]
-    - [[#doxygen-header-1][Doxygen header]]
-    - [[#libraries][Libraries]]
-    - [[#constructors-1][Constructors]]
-      - [[#default-constructor][Default constructor]]
-      - [[#copy-constructor][Copy constructor]]
-      - [[#init-constructor][Init constructor]]
-      - [[#destructor][Destructor]]
-    - [[#operators-1][Operators]]
-      - [[#][=]]
-      - [[#-1][==]]
-    - [[#functions-1][Functions]]
-      - [[#set-functions][Set functions]]
-        - [[#setwidth][SetWidth]]
-        - [[#setlength][SetLength]]
-        - [[#setdim][SetDim]]
-      - [[#get-functions][Get functions]]
-        - [[#getwidth][GetWidth]]
-        - [[#getlength][GetLength]]
-        - [[#getdim][GetDim]]
-        - [[#getarea][GetArea]]
-        - [[#getperimeter][GetPerimeter]]
 - [[#rhombus][Rhombus]]
   - [[#rhombush][rhombus.h]]
-    - [[#setup-1][Setup]]
-      - [[#doxygen-header-2][Doxygen header]]
-      - [[#open-ifndef-1][open ifndef]]
-      - [[#namespace-1][namespace]]
-    - [[#body-1][Body]]
-      - [[#open-1][open]]
-      - [[#private-descriptors-1][private descriptors]]
-      - [[#public-descriptors-1][public descriptors]]
-        - [[#constructors-2][Constructors]]
-        - [[#operators-2][operators]]
-        - [[#functions-2][Functions]]
-    - [[#end-1][End]]
-      - [[#close-class-1][close class]]
-      - [[#close-ifndef-endif-1][close ifndef (endif)]]
   - [[#rhombuscpp][rhombus.cpp]]
-    - [[#doxygen-header-3][Doxygen header]]
-    - [[#libraries-1][Libraries]]
-    - [[#constructors-3][Constructors]]
-      - [[#default-constructor-1][Default constructor]]
-      - [[#copy-constructor-1][Copy constructor]]
-      - [[#init-constructor-1][Init constructor]]
-      - [[#destructor-1][Destructor]]
-    - [[#operators-3][Operators]]
-      - [[#-2][=]]
-      - [[#-3][==]]
-    - [[#functions-3][Functions]]
-      - [[#set-functions-1][Set functions]]
-        - [[#setd1][SetD1]]
-        - [[#setlength-1][SetLength]]
-        - [[#setdim-1][SetDim]]
-      - [[#get-functions-1][Get functions]]
-        - [[#getd1][GetD1]]
-        - [[#getd2][GetD2]]
-        - [[#getdim-1][GetDim]]
-        - [[#getarea-1][GetArea]]
-        - [[#getside][GetSide]]
-        - [[#getperimeter-1][GetPerimeter]]
 - [[#main][Main]]
-  - [[#doxygen-header-4][Doxygen header]]
-  - [[#include-libraries][Include libraries]]
-  - [[#body-2][body]]
-    -  [[#open-2][open]]
-    - [[#rectangle-a][Rectangle A]]
-    - [[#rectangle-b][Rectangle B]]
-    - [[#rectangle-c][Rectangle C]]
-    - [[#rectangle-d][Rectangle D]]
-    - [[#close][close]]
+  - [[#setup][Setup]]
+  - [[#body][body]]
 
 * Rectangle
 ** rectangle.h
@@ -647,14 +569,15 @@ int Rhombus::GetPerimeter()
 :properties:
 :header-args: :tangle main.cpp
 :end:
-** Doxygen header
+** Setup
+*** Doxygen header
 #+begin_src cpp
 /*!
   \file main.cpp
   \brief Fiddling with rectangles and rhombi
 */
 #+end_src
-** Include libraries
+*** Include libraries
 #+begin_src cpp
 #include <iostream>
 
