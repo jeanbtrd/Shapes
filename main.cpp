@@ -17,13 +17,13 @@ int main()
 	/// Get Rectangle A dimensions using "Get" functions.
 	cout << "\nRectangle A:\n";
 	/// test GetWidth:
-	cout << "width: " << objRectA.GetWidth() << "\n";
+	cout << "width: " << objRectA.GetWidth() << endl;
 	/// test GetLenght:
-	cout << "length: " << objRectA.GetLength() << "\n";
+	cout << "length: " << objRectA.GetLength() << endl;
 
 	/// Change Rectangle A width using SetWidth.
 	objRectA.SetWidth(4);
-	cout << "New width: " << objRectA.GetWidth() << "\n";
+	cout << "New width: " << objRectA.GetWidth() << endl;
 
 	/// Create Rectangle B using the default "Rectangle" constructor.
 	/// It will give it the default width and length values: 0 and 0.

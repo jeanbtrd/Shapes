@@ -18,12 +18,12 @@ Rectangle::Rectangle()
 
 /// @brief copy constructor
 /// @param R rectangle to copy.
-Rectangle::Rectangle(const Rectangle & R)
+Rectangle::Rectangle(const Rectangle & r)
 {
 	cout << "Rectangle - constructor - copy" << endl;
 
-    width = R.width;
-    length = R.length;
+    width = r.width;
+    length = r.length;
 }
 
 /// @brief constructor 
@@ -47,6 +47,34 @@ Rectangle::Rectangle(int w, int l)
 Rectangle::~Rectangle()
 {
 	cout << "Rectangle - destructor" << endl;
+}
+
+
+/// ----------------- Operators overloading ----------
+/// @brief overload of assign operator
+/// @param reference to the object on the right side of the operator
+/// @return reference to the object on the left side of the operator
+Rectangle& Rectangle::operator=(const Rectangle &r)
+{
+    cout << "Rectangle - operator =" << endl;
+
+    width = r.width;
+    length = r.length;
+
+    /// "this" is the pointer to the current object
+    /// (the one who called the function).
+    return *this;
+}
+
+/// @brief overload of operator ==
+/// @param reference to the object on the right side of the operator
+/// @return true if the two objects have the same width and the same length, false if not.
+bool Rectangle::operator==(const Rectangle &r)
+{
+    cout << "Rectangle - operator ==" << endl;
+
+    return (( r.width == width && r.length == length ) ? true : false);
+    //if( r.width == width && r.length == length ) return true; return false;
 }
 
 
@@ -85,14 +113,12 @@ void Rectangle::SetDim(int w, int l)
 
 
 /// @brief get width of the object
-/// @param w width in pixels
 int Rectangle::GetWidth()
 {
     return width;
 }
 
 /// @brief get length of the object
-/// @param l length in pixels
 int Rectangle::GetLength()
 {
     return length;
@@ -107,4 +133,14 @@ void Rectangle::GetDim(int &w, int &l)
     l=length;
 }
 
+/// @brief calculate and return the area of the rectangle
+int Rectangle::GetArea()
+{
+    return width * length;
+}
 
+/// @brief calculate and return the perimeter of the rectangle
+int Rectangle::GetPerimeter()
+{
+    return 2 * ( width + length );
+}
