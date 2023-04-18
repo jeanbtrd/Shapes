@@ -183,6 +183,278 @@ public:
 #endif
 #+end_src
 ** rectangle.cpp
+:properties:
+:header-args: :tangle rectangle.cpp
+:end:
+*** Doxygen header
+#+begin_src cpp
+/// \file rectangle.cpp
+///	\brief class Rectangle: implementation of the functions
+///
+///	Details.
+///
+#+end_src
+*** Libraries
+#+begin_src cpp
+#include <iostream>
+#include "rectangle.h"
+#+end_src
+*** Constructors
+**** Default constructor
+#+begin_src cpp
+/// @brief default constructor
+Rectangle::Rectangle()
+{
+	cout << "Rectangle - constructor - default" << endl;
+
+	width = 0;
+	length = 0;
+}
+#+end_src
+**** Copy constructor
+#+begin_src cpp
+/// @brief copy constructor
+/// @param R rectangle to copy.
+Rectangle::Rectangle(const Rectangle & r)
+{
+	cout << "Rectangle - constructor - copy" << endl;
+
+    width = r.width;
+    length = r.length;
+}
+#+end_src
+**** Init constructor
+#+begin_src cpp
+/// @brief init constructor
+/// @param w width in pixels
+/// @param h length in pixels
+Rectangle::Rectangle(int w, int l)
+{
+	width = 0;
+	length = 0;
+
+	cout << "Rectangle - constructor" << endl;
+
+	if (w <= 0) cout << "WARNING: Rectangle - constructor: width should be > 0" << endl;
+	else width = w;
+
+	if (l <= 0) cout << "WARNING: Rectangle - constructor: length should be > 0" << endl;
+	else length = l;
+}
+#+end_src
+**** Destructor
+#+begin_src cpp
+/// @brief destructor
+Rectangle::~Rectangle()
+{
+	cout << "Rectangle - destructor" << endl;
+}
+#+end_src
+*** Operators
+#+begin_src cpp
+/// ----------------- Operators ---------------------------
+#+end_src
+**** =
+#+begin_src cpp
+/// @brief overload of assign operator
+/// @param reference to the object on the right side of the operator
+/// @return reference to the object on the left side of the operator
+Rectangle& Rectangle::operator=(const Rectangle &r)
+{
+    cout << "Rectangle - operator =" << endl;
+
+    width = r.width;
+    length = r.length;
+
+    /// "this" is the pointer to the current object
+    /// (the one who called the function).
+    return *this;
+}
+#+end_src
+**** ==
+#+begin_src cpp
+/// @brief overload of operator ==
+/// @param reference to the object on the right side of the operator
+/// @return true if the two objects have the same width and the same length, false if not.
+bool Rectangle::operator==(const Rectangle &r)
+{
+    cout << "Rectangle - operator ==" << endl;
+
+    return (( r.width == width && r.length == length ) ? true : false);
+    //if( r.width == width && r.length == length ) return true; return false;
+}
+#+end_src
+*** Functions
+**** Set functions
+***** SetWidth
+#+begin_src cpp
+/// @brief set width of the object
+/// @param w width in pixels
+void Rectangle::SetWidth(int w)
+{
+	if (w < 0)
+    {
+		cout << "WARNING: Rectangle - SetWidth: width should be > 0" << endl;
+		return;
+	}
+	width = w;
+}
+#+end_src
+***** SetLength
+#+begin_src cpp
+/// @brief set length of the object
+/// @param l length in pixels
+void Rectangle::SetLength(int l)
+{
+	if (l < 0)
+    {
+		cout << "WARNING: Rectangle - SetLength: length should be > 0" << endl;
+		return;
+	}
+	length = l;
+}
+#+end_src
+***** SetDim
+#+begin_src cpp
+/// @brief set width and length of the object
+/// @param w width in pixels
+/// @param l length in pixels
+void Rectangle::SetDim(int w, int l)
+{
+	SetWidth(w);
+	SetLength(l);
+}
+#+end_src
+**** Get functions
+***** GetWidth
+#+begin_src cpp
+/// @brief get width of the object
+int Rectangle::GetWidth()
+{
+    return width;
+}
+#+end_src
+***** GetLength
+#+begin_src cpp
+/// @brief get length of the object
+int Rectangle::GetLength()
+{
+    return length;
+}
+#+end_src
+***** GetDim
+#+begin_src cpp
+/// @brief get width and length of the object
+/// @param w width in pixels
+/// @param l length in pixels
+void Rectangle::GetDim(int &w, int &l)
+{
+    w=width;
+    l=length;
+}
+#+end_src
+***** GetArea
+#+begin_src cpp
+/// @brief calculate and return the area of the rectangle
+int Rectangle::GetArea()
+{
+    return width * length;
+}
+#+end_src
+***** GetPerimeter
+#+begin_src cpp
+/// @brief calculate and return the perimeter of the rectangle
+int Rectangle::GetPerimeter()
+{
+    return 2 * ( width + length );
+}
+#+end_src
+* Rhombus
+** rhombus.h
+:properties:
+:header-args: :tangle rhombus.h
+:end:
+*** Setup
+**** Doxygen header
+#+begin_src cpp
+/*! \file rhombus.h
+	\brief Declaration of the class Rhombus
+
+	Details.
+,*/
+#+end_src
+**** open ifndef
+#+begin_src cpp
+#ifndef RHOMBUS_H
+#define RHOMBUS_H
+#+end_src
+**** namespace
+#+begin_src cpp
+using namespace std;
+#+end_src
+*** Body
+**** open
+#+begin_src cpp
+/// @class Rhombus
+/// @brief to manage an object with the shape of a rhombus
+class Rhombus
+{
+#+end_src
+**** private descriptors
+#+begin_src cpp
+private:
+	int length;
+	int width;
+#+end_src
+**** public descriptors
+#+begin_src cpp
+public:
+#+end_src
+***** Constructors
+#+begin_src cpp
+	/// Default constructor
+	Rhombus();
+	/// Copy constructor
+	Rhombus(const Rhombus & R);
+	/// Init constructor
+	Rhombus(int w, int l);
+    /// Destructor
+	~Rhombus();
+#+end_src
+***** operators
+#+begin_src cpp
+	/// Operators
+	/// assign
+	Rhombus& operator=(const Rhombus &r);
+	/// isequal
+	bool operator==(const Rhombus &r);
+#+end_src
+***** Functions
+#+begin_src cpp
+	void SetDim(int w, int l);
+	void SetLength(int l);
+	void SetWidth(int w);
+
+	void GetDim(int &w, int &l);
+	int GetLength();
+	int GetWidth();
+
+	int GetArea();
+	int GetPerimeter();
+#+end_src
+*** End
+**** close class
+#+begin_src cpp
+};
+#+end_src
+**** close ifndef (endif)
+#+begin_src cpp
+#endif
+#+end_src
+** rhombus.cpp
+:properties:
+:header-args: :tangle rhombus.h
+:end:
 *** Doxygen header
 #+begin_src cpp
 /// \file rectangle.cpp

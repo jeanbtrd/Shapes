@@ -4,10 +4,10 @@
 ///	Details.
 ///
 
-#include<iostream>
+#include <iostream>
 #include "rectangle.h"
 
-/// @brief default constructor 
+/// @brief default constructor
 Rectangle::Rectangle()
 {
 	cout << "Rectangle - constructor - default" << endl;
@@ -26,7 +26,7 @@ Rectangle::Rectangle(const Rectangle & r)
     length = r.length;
 }
 
-/// @brief constructor 
+/// @brief init constructor
 /// @param w width in pixels
 /// @param h length in pixels
 Rectangle::Rectangle(int w, int l)
@@ -43,14 +43,14 @@ Rectangle::Rectangle(int w, int l)
 	else length = l;
 }
 
-/// @brief destructor 
+/// @brief destructor
 Rectangle::~Rectangle()
 {
 	cout << "Rectangle - destructor" << endl;
 }
 
+/// ----------------- Operators ---------------------------
 
-/// ----------------- Operators overloading ----------
 /// @brief overload of assign operator
 /// @param reference to the object on the right side of the operator
 /// @return reference to the object on the left side of the operator
@@ -76,7 +76,6 @@ bool Rectangle::operator==(const Rectangle &r)
     return (( r.width == width && r.length == length ) ? true : false);
     //if( r.width == width && r.length == length ) return true; return false;
 }
-
 
 /// @brief set width of the object
 /// @param w width in pixels
@@ -110,7 +109,6 @@ void Rectangle::SetDim(int w, int l)
 	SetWidth(w);
 	SetLength(l);
 }
-
 
 /// @brief get width of the object
 int Rectangle::GetWidth()
