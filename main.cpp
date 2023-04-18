@@ -1,11 +1,12 @@
 /*!
   \file main.cpp
-  \brief Fiddling with the Rectangle class.
+  \brief Fiddling with rectangles and rhombi
 */
 
 #include <iostream>
 
 #include "rectangle.h"
+#include "rhombus.h"
 
 int main()
 {

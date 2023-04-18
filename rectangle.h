@@ -15,8 +15,8 @@ class Rectangle
 {
 
 private:
-	int length;
 	int width;
+	int length;
 
 public:
 

@@ -5,6 +5,7 @@
 ///
 
 #include <iostream>
+
 #include "rectangle.h"
 
 /// @brief default constructor
@@ -52,8 +53,8 @@ Rectangle::~Rectangle()
 /// ----------------- Operators ---------------------------
 
 /// @brief overload of assign operator
-/// @param reference to the object on the right side of the operator
-/// @return reference to the object on the left side of the operator
+/// @param reference to the object on the right height of the operator
+/// @return reference to the object on the left height of the operator
 Rectangle& Rectangle::operator=(const Rectangle &r)
 {
     cout << "Rectangle - operator =" << endl;
@@ -67,7 +68,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r)
 }
 
 /// @brief overload of operator ==
-/// @param reference to the object on the right side of the operator
+/// @param reference to the object on the right height of the operator
 /// @return true if the two objects have the same width and the same length, false if not.
 bool Rectangle::operator==(const Rectangle &r)
 {
@@ -134,11 +135,11 @@ void Rectangle::GetDim(int &w, int &l)
 /// @brief calculate and return the area of the rectangle
 int Rectangle::GetArea()
 {
-    return width * length;
+		return width * length;
 }
 
 /// @brief calculate and return the perimeter of the rectangle
 int Rectangle::GetPerimeter()
 {
-    return 2 * ( width + length );
+		return 2 * ( width + length );
 }

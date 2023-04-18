@@ -1,105 +1,6 @@
 #+title: Readme
 #+auto_tangle: t
 
-* Main
-:properties:
-:header-args: :tangle main.cpp
-:end:
-** Doxygen header
-#+begin_src cpp
-/*!
-  \file main.cpp
-  \brief Fiddling with the Rectangle class.
-*/
-#+end_src
-** Include libraries
-#+begin_src cpp
-#include <iostream>
-
-#include "rectangle.h"
-#+end_src
-** body
-***  open
-#+begin_src cpp
-int main()
-{
-#+end_src
-*** Rectangle A
-The Rectangle A object, called =objRectA=, is created using the *init constructor* giving it specific values for width and length.
-#+begin_src cpp
-	/// Create Rectangle A giving it specific values.
-	/// To do this, the init constructor is called.
-	Rectangle objRectA(10,5);
-#+end_src
-
-=GetWidth= and =GetLength= are used to extract the Rectangle A dimensions just set, which are then sent to =cout= to be displayed.
-#+begin_src cpp
-	/// Get Rectangle A dimensions using "Get" functions.
-	cout << "\nRectangle A:\n";
-	/// test GetWidth:
-	cout << "width: " << objRectA.GetWidth() << endl;
-	/// test GetLenght:
-	cout << "length: " << objRectA.GetLength() << endl;
-#+end_src
-
-=SetWidth= changes the Rectangle A width.
-#+begin_src cpp
-	/// Change Rectangle A width using SetWidth.
-	objRectA.SetWidth(4);
-	cout << "New width: " << objRectA.GetWidth() << endl;
-#+end_src
-
-*** Rectangle B
-The Rectangle B object, called =objRectB=, is created using the *default constructor* so with the default values: 0 and 0.
-#+begin_src cpp
-	/// Create Rectangle B using the default "Rectangle" constructor.
-	/// It will give it the default width and length values: 0 and 0.
-	Rectangle objRectB;
-	cout << "\nRectangle B:\n";
-	cout << "Default values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n";
-#+end_src
-
-=SetDim= is used to give Rectangle B new values.
-#+begin_src cpp
-	/// Set dimensions for the Rectangle B, overwriting the defaults.
-	objRectB.SetDim(3,7);
-	cout << "New values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n\n";
-#+end_src
-
-- =lToPrint= and =wToPrint= integer variables are created and initialized to 0.
-- They are then changed by =GetDim= to the length and width of Rectangle B.
-- Finally they're sent to =cout= to be displayed.
-#+begin_src cpp
-	/// variables to store and then print length and width.
-	/// They're needed by GetDim (indirect addressing).
-	int wToPrint, lToPrint; wToPrint = lToPrint = (int)0;
-
-	/// test GetDim
-	objRectA.GetDim(wToPrint,lToPrint);
-	cout << "Width and length: (" << wToPrint << ", " << lToPrint << ")\n\n";
-#+end_src
-*** Rectangle C
-=objRectC= is created inside a pair of brackets ={  }=, which delimit its /scope/.
-When the compiler encounters the closing bracket the destructor is called to get rid of rectangle C, because we're now moving outside of its scope.
-#+begin_src cpp
-    /// An object's ending scope causes its destruction
-    {
-        Rectangle objRectC;
-        cout << "Rectangle C is not yet destroyed\n";
-    }
-    cout << "Rectangle C is now destroyed\n";
-#+end_src
-*** Rectangle D
-=objRectD= is created as a copy of =objRectB=.
-#+begin_src cpp
-    /// copy constructor creates Rectangle D as a copy of Rectangle B
-    Rectangle objRectD(objRectB);
-    cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
-#+end_src
-*** close
-#+begin_src cpp
-}
-#+end_src
 * Rectangle
 ** rectangle.h
 :properties:
@@ -134,8 +35,8 @@ class Rectangle
 **** private descriptors
 #+begin_src cpp
 private:
-	int length;
 	int width;
+	int length;
 #+end_src
 **** public descriptors
 #+begin_src cpp
@@ -197,6 +98,7 @@ public:
 *** Libraries
 #+begin_src cpp
 #include <iostream>
+
 #include "rectangle.h"
 #+end_src
 *** Constructors
@@ -257,8 +159,8 @@ Rectangle::~Rectangle()
 **** =
 #+begin_src cpp
 /// @brief overload of assign operator
-/// @param reference to the object on the right side of the operator
-/// @return reference to the object on the left side of the operator
+/// @param reference to the object on the right height of the operator
+/// @return reference to the object on the left height of the operator
 Rectangle& Rectangle::operator=(const Rectangle &r)
 {
     cout << "Rectangle - operator =" << endl;
@@ -274,7 +176,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r)
 **** ==
 #+begin_src cpp
 /// @brief overload of operator ==
-/// @param reference to the object on the right side of the operator
+/// @param reference to the object on the right height of the operator
 /// @return true if the two objects have the same width and the same length, false if not.
 bool Rectangle::operator==(const Rectangle &r)
 {
@@ -358,7 +260,7 @@ void Rectangle::GetDim(int &w, int &l)
 /// @brief calculate and return the area of the rectangle
 int Rectangle::GetArea()
 {
-    return width * length;
+		return width * length;
 }
 #+end_src
 ***** GetPerimeter
@@ -366,7 +268,7 @@ int Rectangle::GetArea()
 /// @brief calculate and return the perimeter of the rectangle
 int Rectangle::GetPerimeter()
 {
-    return 2 * ( width + length );
+		return 2 * ( width + length );
 }
 #+end_src
 * Rhombus
@@ -403,8 +305,9 @@ class Rhombus
 **** private descriptors
 #+begin_src cpp
 private:
-	int length;
-	int width;
+	/// the two diagonals exaustively describe a rhombus.
+	int diagonal1;
+	int diagonal2;
 #+end_src
 **** public descriptors
 #+begin_src cpp
@@ -417,8 +320,8 @@ public:
 	/// Copy constructor
 	Rhombus(const Rhombus & R);
 	/// Init constructor
-	Rhombus(int w, int l);
-    /// Destructor
+	Rhombus(int d1, int d2);
+	/// Destructor
 	~Rhombus();
 #+end_src
 ***** operators
@@ -426,20 +329,21 @@ public:
 	/// Operators
 	/// assign
 	Rhombus& operator=(const Rhombus &r);
-	/// isequal
+	/// ==
 	bool operator==(const Rhombus &r);
 #+end_src
 ***** Functions
 #+begin_src cpp
-	void SetDim(int w, int l);
-	void SetLength(int l);
-	void SetWidth(int w);
+	void SetDim(int d1, int d2);
+	void SetD1(int d1);
+	void SetD2(int d2);
 
-	void GetDim(int &w, int &l);
-	int GetLength();
-	int GetWidth();
+	void GetDim(int &d1, int &d2);
+	int GetD1();
+	int GetD2();
 
 	int GetArea();
+	int GetSide();
 	int GetPerimeter();
 #+end_src
 *** End
@@ -453,70 +357,71 @@ public:
 #+end_src
 ** rhombus.cpp
 :properties:
-:header-args: :tangle rhombus.h
+:header-args: :tangle rhombus.cpp
 :end:
 *** Doxygen header
 #+begin_src cpp
-/// \file rectangle.cpp
-///	\brief class Rectangle: implementation of the functions
+///	\file rhombus.cpp
+///	\brief class Rhombus: implementation of the functions
 ///
 ///	Details.
-///
 #+end_src
 *** Libraries
 #+begin_src cpp
 #include <iostream>
-#include "rectangle.h"
+#include <cmath>
+
+#include "rhombus.h"
 #+end_src
 *** Constructors
 **** Default constructor
 #+begin_src cpp
-/// @brief default constructor
-Rectangle::Rectangle()
+///	@brief default constructor
+Rhombus::Rhombus()
 {
-	cout << "Rectangle - constructor - default" << endl;
+	cout << "Rhombus - constructor - default" << endl;
 
-	width = 0;
-	length = 0;
+	diagonal1 = 0;
+	diagonal2 = 0;
 }
 #+end_src
 **** Copy constructor
 #+begin_src cpp
-/// @brief copy constructor
-/// @param R rectangle to copy.
-Rectangle::Rectangle(const Rectangle & r)
+///	@brief copy constructor
+///	@param r rhombus to copy.
+Rhombus::Rhombus(const Rhombus & r)
 {
-	cout << "Rectangle - constructor - copy" << endl;
+	cout << "Rhombus - constructor - copy" << endl;
 
-    width = r.width;
-    length = r.length;
+    diagonal1 = r.diagonal1;
+    diagonal2 = r.diagonal2;
 }
 #+end_src
 **** Init constructor
 #+begin_src cpp
-/// @brief init constructor
-/// @param w width in pixels
-/// @param h length in pixels
-Rectangle::Rectangle(int w, int l)
+///	@brief init constructor
+///	@param d1 diagonal 1 in pixels
+///	@param d2 diagonal 2 in pixels
+Rhombus::Rhombus(int d1, int d2)
 {
-	width = 0;
-	length = 0;
+	diagonal1 = 0;
+	diagonal2 = 0;
 
-	cout << "Rectangle - constructor" << endl;
+	cout << "Rhombus - constructor" << endl;
 
-	if (w <= 0) cout << "WARNING: Rectangle - constructor: width should be > 0" << endl;
-	else width = w;
+	if (d1 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 1 should be > 0" << endl;
+	else diagonal1 = d1;
 
-	if (l <= 0) cout << "WARNING: Rectangle - constructor: length should be > 0" << endl;
-	else length = l;
+	if (d2 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 2 should be > 0" << endl;
+	else diagonal2 = d2;
 }
 #+end_src
 **** Destructor
 #+begin_src cpp
-/// @brief destructor
-Rectangle::~Rectangle()
+///	@brief destructor
+Rhombus::~Rhombus()
 {
-	cout << "Rectangle - destructor" << endl;
+	cout << "Rhombus - destructor" << endl;
 }
 #+end_src
 *** Operators
@@ -525,116 +430,226 @@ Rectangle::~Rectangle()
 #+end_src
 **** =
 #+begin_src cpp
-/// @brief overload of assign operator
-/// @param reference to the object on the right side of the operator
-/// @return reference to the object on the left side of the operator
-Rectangle& Rectangle::operator=(const Rectangle &r)
+///	@brief overload of assign operator
+///	@param reference to the object on the right height of the operator
+///	@return reference to the object on the left height of the operator
+Rhombus& Rhombus::operator=(const Rhombus &r)
 {
-    cout << "Rectangle - operator =" << endl;
+		cout << "Rhombus - operator =" << endl;
 
-    width = r.width;
-    length = r.length;
+		diagonal1 = r.diagonal1;
+		diagonal2 = r.diagonal2;
 
-    /// "this" is the pointer to the current object
-    /// (the one who called the function).
-    return *this;
+		/// "this" is the pointer to the current object
+		/// (the one who called the function).
+		return *this;
 }
 #+end_src
 **** ==
 #+begin_src cpp
-/// @brief overload of operator ==
-/// @param reference to the object on the right side of the operator
-/// @return true if the two objects have the same width and the same length, false if not.
-bool Rectangle::operator==(const Rectangle &r)
+///	@brief overload of operator ==
+///	@param reference to the object on the right height of the operator
+///	@return true if the two objects have the same width and the same length, false if not.
+bool Rhombus::operator==(const Rhombus &r)
 {
-    cout << "Rectangle - operator ==" << endl;
-
-    return (( r.width == width && r.length == length ) ? true : false);
-    //if( r.width == width && r.length == length ) return true; return false;
+		cout << "Rhombus - operator ==" << endl;
+		return (( r.diagonal1 == diagonal1 && r.diagonal2 == diagonal2 ) ? true : false);
 }
 #+end_src
+
 *** Functions
 **** Set functions
-***** SetWidth
+***** SetD1
 #+begin_src cpp
-/// @brief set width of the object
-/// @param w width in pixels
-void Rectangle::SetWidth(int w)
+///	@brief set diagonal 1 of the rhombus
+///	@param D1 in pixels
+void Rhombus::SetD1(int D1)
 {
-	if (w < 0)
-    {
-		cout << "WARNING: Rectangle - SetWidth: width should be > 0" << endl;
+	if (D1 < 0)
+	{
+		cout << "WARNING: Rhombus - SetD1: diagonal 1 should be > 0" << endl;
 		return;
 	}
-	width = w;
+	diagonal1 = D1;
 }
 #+end_src
 ***** SetLength
 #+begin_src cpp
-/// @brief set length of the object
-/// @param l length in pixels
-void Rectangle::SetLength(int l)
+///	@brief set diagonal 2 of the rhombus
+///	@param D2 in pixels
+void Rhombus::SetD2(int D2)
 {
-	if (l < 0)
-    {
-		cout << "WARNING: Rectangle - SetLength: length should be > 0" << endl;
+	if (D2 < 0)
+	{
+		cout << "WARNING: Rhombus - SetD2: diagonal 2 should be > 0" << endl;
 		return;
 	}
-	length = l;
+	diagonal2 = D2;
 }
 #+end_src
 ***** SetDim
 #+begin_src cpp
-/// @brief set width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::SetDim(int w, int l)
+///	@brief set both diagonals of the rhombus
+///	@param D1 in pixels
+///	@param D2 in pixels
+void Rhombus::SetDim(int D1, int D2)
 {
-	SetWidth(w);
-	SetLength(l);
+	SetD1(D1);
+	SetD2(D2);
 }
 #+end_src
 **** Get functions
-***** GetWidth
+***** GetD1
 #+begin_src cpp
-/// @brief get width of the object
-int Rectangle::GetWidth()
+///	@brief get diagonal 1 of the rhombus
+int Rhombus::GetD1()
 {
-    return width;
+		return diagonal1;
 }
 #+end_src
-***** GetLength
+***** GetD2
 #+begin_src cpp
-/// @brief get length of the object
-int Rectangle::GetLength()
+///	@brief get diagonal 2 of the rhombus
+int Rhombus::GetD2()
 {
-    return length;
+		return diagonal2;
 }
 #+end_src
 ***** GetDim
 #+begin_src cpp
-/// @brief get width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::GetDim(int &w, int &l)
+///	@brief get both diagonals of the rhombus
+///	@param d1 diagonal1 in pixels
+///	@param d2 diagonal2 in pixels
+void Rhombus::GetDim(int &d1, int &d2)
 {
-    w=width;
-    l=length;
+		d1=diagonal1;
+		d2=diagonal2;
 }
 #+end_src
 ***** GetArea
 #+begin_src cpp
-/// @brief calculate and return the area of the rectangle
-int Rectangle::GetArea()
+///	@brief calculate and return the area of the rhombus
+///	@return the area of the rhombus in square pixels
+int Rhombus::GetArea()
 {
-    return width * length;
+		return (int)(diagonal1 * diagonal2)/2;
+}
+#+end_src
+***** GetSide
+#+begin_src cpp
+///	@brief calculate and return the side of the rhombus
+///	NB: all 4 sides of a rhombus are equal
+///	@return length of the side of the rhombus, in pixels.
+int Rhombus::GetSide()
+{
+		return (int)(sqrt(diagonal1*diagonal1+diagonal2*diagonal2)/2);
 }
 #+end_src
 ***** GetPerimeter
 #+begin_src cpp
-/// @brief calculate and return the perimeter of the rectangle
-int Rectangle::GetPerimeter()
+///	@brief calculate and return the perimeter of the rhombus
+///	@return the perimeter of the rhombus in pixels
+int Rhombus::GetPerimeter()
 {
-    return 2 * ( width + length );
+		return 4*(GetSide());
+}
+#+end_src
+* Main
+:properties:
+:header-args: :tangle main.cpp
+:end:
+** Doxygen header
+#+begin_src cpp
+/*!
+  \file main.cpp
+  \brief Fiddling with rectangles and rhombi
+*/
+#+end_src
+** Include libraries
+#+begin_src cpp
+#include <iostream>
+
+#include "rectangle.h"
+#include "rhombus.h"
+#+end_src
+** body
+***  open
+#+begin_src cpp
+int main()
+{
+#+end_src
+*** Rectangle A
+The Rectangle A object, called =objRectA=, is created using the *init constructor* giving it specific values for width and length.
+#+begin_src cpp
+	/// Create Rectangle A giving it specific values.
+	/// To do this, the init constructor is called.
+	Rectangle objRectA(10,5);
+#+end_src
+
+=GetWidth= and =GetLength= are used to extract the Rectangle A dimensions just set, which are then sent to =cout= to be displayed.
+#+begin_src cpp
+	/// Get Rectangle A dimensions using "Get" functions.
+	cout << "\nRectangle A:\n";
+	/// test GetWidth:
+	cout << "width: " << objRectA.GetWidth() << endl;
+	/// test GetLenght:
+	cout << "length: " << objRectA.GetLength() << endl;
+#+end_src
+
+=SetWidth= changes the Rectangle A width.
+#+begin_src cpp
+	/// Change Rectangle A width using SetWidth.
+	objRectA.SetWidth(4);
+	cout << "New width: " << objRectA.GetWidth() << endl;
+#+end_src
+*** Rectangle B
+The Rectangle B object, called =objRectB=, is created using the *default constructor* so with the default values: 0 and 0.
+#+begin_src cpp
+	/// Create Rectangle B using the default "Rectangle" constructor.
+	/// It will give it the default width and length values: 0 and 0.
+	Rectangle objRectB;
+	cout << "\nRectangle B:\n";
+	cout << "Default values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n";
+#+end_src
+
+=SetDim= is used to give Rectangle B new values.
+#+begin_src cpp
+	/// Set dimensions for the Rectangle B, overwriting the defaults.
+	objRectB.SetDim(3,7);
+	cout << "New values: " << "(" << objRectB.GetWidth() << ", " << objRectB.GetLength() << ")\n\n";
+#+end_src
+
+- =lToPrint= and =wToPrint= integer variables are created and initialized to 0.
+- They are then changed by =GetDim= to the length and width of Rectangle B.
+- Finally they're sent to =cout= to be displayed.
+#+begin_src cpp
+	/// variables to store and then print length and width.
+	/// They're needed by GetDim (indirect addressing).
+	int wToPrint, lToPrint; wToPrint = lToPrint = (int)0;
+
+	/// test GetDim
+	objRectA.GetDim(wToPrint,lToPrint);
+	cout << "Width and length: (" << wToPrint << ", " << lToPrint << ")\n\n";
+#+end_src
+*** Rectangle C
+=objRectC= is created inheight a pair of brackets ={  }=, which delimit its /scope/.
+When the compiler encounters the closing bracket the destructor is called to get rid of rectangle C, because we're now moving outheight of its scope.
+#+begin_src cpp
+    /// An object's ending scope causes its destruction
+    {
+        Rectangle objRectC;
+        cout << "Rectangle C is not yet destroyed\n";
+    }
+    cout << "Rectangle C is now destroyed\n";
+#+end_src
+*** Rectangle D
+=objRectD= is created as a copy of =objRectB=.
+#+begin_src cpp
+    /// copy constructor creates Rectangle D as a copy of Rectangle B
+    Rectangle objRectD(objRectB);
+    cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
+#+end_src
+*** close
+#+begin_src cpp
 }
 #+end_src
