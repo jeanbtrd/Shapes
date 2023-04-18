@@ -50,6 +50,7 @@ int main()
     }
     cout << "Rectangle C is now destroyed\n";
 
+    /// copy constructor creates Rectangle D as a copy of Rectangle B
     Rectangle objRectD(objRectB);
     cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
 

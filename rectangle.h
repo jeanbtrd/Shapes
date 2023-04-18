@@ -22,7 +22,7 @@ public:
 	/// Default constructor
 	Rectangle();
 	/// Copy constructor
-	Rectangle(Rectangle & R);
+	Rectangle(const Rectangle & R);
 
 	/// Init constructor
 	Rectangle(int w, int l);

@@ -92,6 +92,7 @@ When the compiler encounters the closing bracket the destructor is called to get
 *** Rectangle D
 =objRectD= is created as a copy of =objRectB=.
 #+begin_src cpp
+    /// copy constructor creates Rectangle D as a copy of Rectangle B
     Rectangle objRectD(objRectB);
     cout << "Rectangle D (copy of Rectangle B): " << "(" << objRectD.GetWidth() << ", " << objRectD.GetLength() << ")\n";
 #+end_src

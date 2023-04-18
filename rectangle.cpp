@@ -18,12 +18,12 @@ Rectangle::Rectangle()
 
 /// @brief copy constructor
 /// @param R rectangle to copy.
-Rectangle::Rectangle(Rectangle & R)
+Rectangle::Rectangle(const Rectangle & R)
 {
 	cout << "Rectangle - constructor - copy" << endl;
 
-    width = R.GetWidth();
-    length = R.GetLength();
+    width = R.width;
+    length = R.length;
 }
 
 /// @brief constructor 
