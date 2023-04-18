@@ -1,18 +1,6 @@
 #+title: Readme
 #+auto_tangle: t
 
-* Table of contents :toc:
-- [[#rectangle][Rectangle]]
-  - [[#rectangleh][rectangle.h]]
-  - [[#rectanglecpp][rectangle.cpp]]
-- [[#rhombus][Rhombus]]
-  - [[#rhombush][rhombus.h]]
-  - [[#rhombuscpp][rhombus.cpp]]
-- [[#main][Main]]
-  - [[#doxygen-header][Doxygen header]]
-  - [[#include-libraries][Include libraries]]
-  - [[#body][body]]
-
 * Rectangle
 ** rectangle.h
 :properties:
