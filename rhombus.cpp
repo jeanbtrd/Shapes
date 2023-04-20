@@ -8,13 +8,15 @@
 
 #include "rhombus.h"
 
+///@{ Constructors
+
 ///	@brief default constructor
 Rhombus::Rhombus()
 {
 	cout << "Rhombus - constructor - default" << endl;
 
-	diagonal1 = 0;
-	diagonal2 = 0;
+	diagH = (float)0;
+	diagV = (float)0;
 }
 
 ///	@brief copy constructor
@@ -23,25 +25,25 @@ Rhombus::Rhombus(const Rhombus & r)
 {
 	cout << "Rhombus - constructor - copy" << endl;
 
-    diagonal1 = r.diagonal1;
-    diagonal2 = r.diagonal2;
+    diagH = r.diagH;
+    diagV = r.diagV;
 }
 
 ///	@brief init constructor
-///	@param d1 diagonal 1 in pixels
-///	@param d2 diagonal 2 in pixels
-Rhombus::Rhombus(int d1, int d2)
+///	@param dh horizontal diagonal in pixels
+///	@param dv vertical diagonal in pixels
+Rhombus::Rhombus(float dh, float dv)
 {
-	diagonal1 = 0;
-	diagonal2 = 0;
+	diagH = (float)0;
+	diagV = (float)0;
 
 	cout << "Rhombus - constructor" << endl;
 
-	if (d1 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 1 should be > 0" << endl;
-	else diagonal1 = d1;
+	if (dh <= (float)0) cout << "WARNING: Rhombus - constructor: horizontal diagonal should be > 0" << endl;
+	else diagH = dh;
 
-	if (d2 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 2 should be > 0" << endl;
-	else diagonal2 = d2;
+	if (dv <= (float)0) cout << "WARNING: Rhombus - constructor: vertical diagonal should be > 0" << endl;
+	else diagV = dv;
 }
 
 ///	@brief destructor
@@ -50,7 +52,9 @@ Rhombus::~Rhombus()
 	cout << "Rhombus - destructor" << endl;
 }
 
-/// ----------------- Operators ---------------------------
+//@}
+
+///@{ operators
 
 ///	@brief overload of assign operator
 ///	@param reference to the object on the right height of the operator
@@ -59,8 +63,8 @@ Rhombus& Rhombus::operator=(const Rhombus &r)
 {
 		cout << "Rhombus - operator =" << endl;
 
-		diagonal1 = r.diagonal1;
-		diagonal2 = r.diagonal2;
+		diagH = r.diagH;
+		diagV = r.diagV;
 
 		/// "this" is the pointer to the current object
 		/// (the one who called the function).
@@ -73,81 +77,97 @@ Rhombus& Rhombus::operator=(const Rhombus &r)
 bool Rhombus::operator==(const Rhombus &r)
 {
 		cout << "Rhombus - operator ==" << endl;
-		return (( r.diagonal1 == diagonal1 && r.diagonal2 == diagonal2 ) ? true : false);
+		return (( r.diagH == diagH && r.diagV == diagV ) ? true : false);
 }
 
-///	@brief set diagonal 1 of the rhombus
-///	@param D1 in pixels
-void Rhombus::SetD1(int D1)
+//@}
+
+///@{ Functions
+
+///@{ Set functions
+
+///	@brief set horizontal diagonal of the rhombus
+///	@param dH
+void Rhombus::SetDiagH(float dH)
 {
-	if (D1 < 0)
+	if (dH < 0)
 	{
-		cout << "WARNING: Rhombus - SetD1: diagonal 1 should be > 0" << endl;
+		cout << "WARNING: Rhombus - SetDiagH: horizontal diagonal should be > 0" << endl;
 		return;
 	}
-	diagonal1 = D1;
+	diagH = dH;
 }
 
-///	@brief set diagonal 2 of the rhombus
-///	@param D2 in pixels
-void Rhombus::SetD2(int D2)
+///	@brief set vertical diagonal of the rhombus
+///	@param dV
+void Rhombus::SetDiagV(float dV)
 {
-	if (D2 < 0)
+	if (dV < 0)
 	{
-		cout << "WARNING: Rhombus - SetD2: diagonal 2 should be > 0" << endl;
+		cout << "WARNING: Rhombus - SetDiagV: vertical diagonal should be > 0" << endl;
 		return;
 	}
-	diagonal2 = D2;
+	diagV = dV;
 }
 
 ///	@brief set both diagonals of the rhombus
-///	@param D1 in pixels
-///	@param D2 in pixels
-void Rhombus::SetDim(int D1, int D2)
+///	@param dH
+///	@param dV
+void Rhombus::SetDim(float dH, float dV)
 {
-	SetD1(D1);
-	SetD2(D2);
+	SetDiagH(dH);
+	SetDiagV(dV);
 }
 
-///	@brief get diagonal 1 of the rhombus
-int Rhombus::GetD1()
-{
-		return diagonal1;
-}
+//@}
 
-///	@brief get diagonal 2 of the rhombus
-int Rhombus::GetD2()
-{
-		return diagonal2;
-}
+///@{ Get functions
 
 ///	@brief get both diagonals of the rhombus
-///	@param d1 diagonal1 in pixels
-///	@param d2 diagonal2 in pixels
-void Rhombus::GetDim(int &d1, int &d2)
+///	@param dH diagH in pixels
+///	@param dV diagV in pixels
+void Rhombus::GetDiagonals(float &dH, float &dV)
 {
-		d1=diagonal1;
-		d2=diagonal2;
+		dH=diagH;
+		dV=diagV;
 }
 
-///	@brief calculate and return the area of the rhombus
-///	@return the area of the rhombus in square pixels
-int Rhombus::GetArea()
+///	@brief get horizontal diagonal of the rhombus
+///	@return horizontal diagonal of the rhombus
+float Rhombus::GetDiagH()
 {
-		return (int)(diagonal1 * diagonal2)/2;
+		return diagH;
+}
+
+///	@brief get vertical diagonal of the rhombus
+///	@return vertical diagonal of the rhombus
+float Rhombus::GetDiagV()
+{
+		return diagV;
 }
 
 ///	@brief calculate and return the side of the rhombus
 ///	NB: all 4 sides of a rhombus are equal
-///	@return length of the side of the rhombus, in pixels.
-int Rhombus::GetSide()
+///	@return length of the side of the rhombus
+float Rhombus::GetSide()
 {
-		return (int)(sqrt(diagonal1*diagonal1+diagonal2*diagonal2)/2);
+		return (float)(sqrt(diagH*diagH+diagV*diagV)/2);
+}
+
+///	@brief calculate and return the area of the rhombus
+///	@return the area of the rhombus
+float Rhombus::GetArea()
+{
+		return (float)(diagH * diagV)/2;
 }
 
 ///	@brief calculate and return the perimeter of the rhombus
-///	@return the perimeter of the rhombus in pixels
-int Rhombus::GetPerimeter()
+///	@return the perimeter of the rhombus.
+float Rhombus::GetPerimeter()
 {
-		return 4*(GetSide());
+		return (float)4*(GetSide());
 }
+
+//@}
+
+//@}

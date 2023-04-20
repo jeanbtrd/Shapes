@@ -38,7 +38,7 @@ int main()
 
 	/// variables to store and then print length and width.
 	/// They're needed by GetDim (indirect addressing).
-	int wToPrint, lToPrint; wToPrint = lToPrint = (int)0;
+	float wToPrint, lToPrint; wToPrint = lToPrint = 0.;
 
 	/// test GetDim
 	objRectA.GetDim(wToPrint,lToPrint);

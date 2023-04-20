@@ -24,7 +24,7 @@
 	\brief Declaration of the class Rectangle
 
 	Details.
-,*/
+*/
 #+end_src
 **** open ifndef
 #+begin_src cpp
@@ -46,8 +46,8 @@ class Rectangle
 **** private descriptors
 #+begin_src cpp
 private:
-	int width;
-	int length;
+	float width;
+	float length;
 #+end_src
 **** public descriptors
 #+begin_src cpp
@@ -60,30 +60,30 @@ public:
 	/// Copy constructor
 	Rectangle(const Rectangle & R);
 	/// Init constructor
-	Rectangle(int w, int l);
-    /// Destructor
+	Rectangle(float w, float l);
+	/// Destructor
 	~Rectangle();
 #+end_src
 ***** operators
 #+begin_src cpp
 	/// Operators
-	/// assign
+	/// =
 	Rectangle& operator=(const Rectangle &r);
-	/// isequal
+	/// ==
 	bool operator==(const Rectangle &r);
 #+end_src
 ***** Functions
 #+begin_src cpp
-	void SetDim(int w, int l);
-	void SetLength(int l);
-	void SetWidth(int w);
+	void SetDim(float w, float l);
+	void SetLength(float l);
+	void SetWidth(float w);
 
-	void GetDim(int &w, int &l);
-	int GetLength();
-	int GetWidth();
+	void GetDim(float &w, float &l);
+	float GetLength();
+	float GetWidth();
 
-	int GetArea();
-	int GetPerimeter();
+	float GetArea();
+	float GetPerimeter();
 #+end_src
 *** End
 **** close class
@@ -141,7 +141,7 @@ Rectangle::Rectangle(const Rectangle & r)
 /// @brief init constructor
 /// @param w width in pixels
 /// @param h length in pixels
-Rectangle::Rectangle(int w, int l)
+Rectangle::Rectangle(float w, float l)
 {
 	width = 0;
 	length = 0;
@@ -201,9 +201,9 @@ bool Rectangle::operator==(const Rectangle &r)
 **** Set functions
 ***** SetWidth
 #+begin_src cpp
-/// @brief set width of the object
-/// @param w width in pixels
-void Rectangle::SetWidth(int w)
+/// @brief set width of the rectangle
+/// @param w width
+void Rectangle::SetWidth(float w)
 {
 	if (w < 0)
     {
@@ -215,9 +215,9 @@ void Rectangle::SetWidth(int w)
 #+end_src
 ***** SetLength
 #+begin_src cpp
-/// @brief set length of the object
-/// @param l length in pixels
-void Rectangle::SetLength(int l)
+/// @brief set length of the rectangle
+/// @param l length
+void Rectangle::SetLength(float l)
 {
 	if (l < 0)
     {
@@ -229,10 +229,10 @@ void Rectangle::SetLength(int l)
 #+end_src
 ***** SetDim
 #+begin_src cpp
-/// @brief set width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::SetDim(int w, int l)
+/// @brief set width and length of the rectangle
+/// @param w width
+/// @param l length
+void Rectangle::SetDim(float w, float l)
 {
 	SetWidth(w);
 	SetLength(l);
@@ -242,7 +242,7 @@ void Rectangle::SetDim(int w, int l)
 ***** GetWidth
 #+begin_src cpp
 /// @brief get width of the object
-int Rectangle::GetWidth()
+float Rectangle::GetWidth()
 {
     return width;
 }
@@ -250,7 +250,7 @@ int Rectangle::GetWidth()
 ***** GetLength
 #+begin_src cpp
 /// @brief get length of the object
-int Rectangle::GetLength()
+float Rectangle::GetLength()
 {
     return length;
 }
@@ -258,9 +258,9 @@ int Rectangle::GetLength()
 ***** GetDim
 #+begin_src cpp
 /// @brief get width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::GetDim(int &w, int &l)
+/// @param w width
+/// @param l length
+void Rectangle::GetDim(float &w, float &l)
 {
     w=width;
     l=length;
@@ -269,7 +269,8 @@ void Rectangle::GetDim(int &w, int &l)
 ***** GetArea
 #+begin_src cpp
 /// @brief calculate and return the area of the rectangle
-int Rectangle::GetArea()
+/// @return area of the rectangle
+float Rectangle::GetArea()
 {
 		return width * length;
 }
@@ -277,7 +278,8 @@ int Rectangle::GetArea()
 ***** GetPerimeter
 #+begin_src cpp
 /// @brief calculate and return the perimeter of the rectangle
-int Rectangle::GetPerimeter()
+/// @return perimeter of the rectangle
+float Rectangle::GetPerimeter()
 {
 		return 2 * ( width + length );
 }
@@ -316,9 +318,10 @@ class Rhombus
 **** private descriptors
 #+begin_src cpp
 private:
-	/// the two diagonals exaustively describe a rhombus.
-	int diagonal1;
-	int diagonal2;
+	float diagH;
+	float diagV;
+
+	float Side();
 #+end_src
 **** public descriptors
 #+begin_src cpp
@@ -326,36 +329,39 @@ public:
 #+end_src
 ***** Constructors
 #+begin_src cpp
+	/// @{ Constructors
 	/// Default constructor
 	Rhombus();
-	/// Copy constructor
-	Rhombus(const Rhombus & R);
 	/// Init constructor
-	Rhombus(int d1, int d2);
+	Rhombus(float dH, float dV);
+	/// Copy constructor
+	Rhombus(const Rhombus &r);
 	/// Destructor
 	~Rhombus();
+	//@}
 #+end_src
 ***** operators
 #+begin_src cpp
-	/// Operators
-	/// assign
+	///@{ Operators
+	/// =
 	Rhombus& operator=(const Rhombus &r);
 	/// ==
 	bool operator==(const Rhombus &r);
+//@}
 #+end_src
 ***** Functions
 #+begin_src cpp
-	void SetDim(int d1, int d2);
-	void SetD1(int d1);
-	void SetD2(int d2);
+	void SetDim(float dH, float dV);
+	void SetDiagH(float dH);
+	void SetDiagV(float dV);
 
-	void GetDim(int &d1, int &d2);
-	int GetD1();
-	int GetD2();
+	void GetDiagonals(float &dH, float &dV);
+	float GetDiagH();
+	float GetDiagV();
+	float GetSide();
 
-	int GetArea();
-	int GetSide();
-	int GetPerimeter();
+	float GetArea();
+	float GetPerimeter();
 #+end_src
 *** End
 **** close class
@@ -385,6 +391,10 @@ public:
 #include "rhombus.h"
 #+end_src
 *** Constructors
+**** open doxy group
+#+begin_src cpp
+///@{ Constructors
+#+end_src
 **** Default constructor
 #+begin_src cpp
 ///	@brief default constructor
@@ -392,8 +402,8 @@ Rhombus::Rhombus()
 {
 	cout << "Rhombus - constructor - default" << endl;
 
-	diagonal1 = 0;
-	diagonal2 = 0;
+	diagH = (float)0;
+	diagV = (float)0;
 }
 #+end_src
 **** Copy constructor
@@ -404,27 +414,27 @@ Rhombus::Rhombus(const Rhombus & r)
 {
 	cout << "Rhombus - constructor - copy" << endl;
 
-    diagonal1 = r.diagonal1;
-    diagonal2 = r.diagonal2;
+    diagH = r.diagH;
+    diagV = r.diagV;
 }
 #+end_src
 **** Init constructor
 #+begin_src cpp
 ///	@brief init constructor
-///	@param d1 diagonal 1 in pixels
-///	@param d2 diagonal 2 in pixels
-Rhombus::Rhombus(int d1, int d2)
+///	@param dh horizontal diagonal in pixels
+///	@param dv vertical diagonal in pixels
+Rhombus::Rhombus(float dh, float dv)
 {
-	diagonal1 = 0;
-	diagonal2 = 0;
+	diagH = (float)0;
+	diagV = (float)0;
 
 	cout << "Rhombus - constructor" << endl;
 
-	if (d1 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 1 should be > 0" << endl;
-	else diagonal1 = d1;
+	if (dh <= (float)0) cout << "WARNING: Rhombus - constructor: horizontal diagonal should be > 0" << endl;
+	else diagH = dh;
 
-	if (d2 <= 0) cout << "WARNING: Rhombus - constructor: diagonal 2 should be > 0" << endl;
-	else diagonal2 = d2;
+	if (dv <= (float)0) cout << "WARNING: Rhombus - constructor: vertical diagonal should be > 0" << endl;
+	else diagV = dv;
 }
 #+end_src
 **** Destructor
@@ -435,9 +445,14 @@ Rhombus::~Rhombus()
 	cout << "Rhombus - destructor" << endl;
 }
 #+end_src
-*** Operators
+**** Close doxy group
 #+begin_src cpp
-/// ----------------- Operators ---------------------------
+//@}
+#+end_src
+*** Operators
+**** open doxy group
+#+begin_src cpp
+///@{ operators
 #+end_src
 **** =
 #+begin_src cpp
@@ -448,8 +463,8 @@ Rhombus& Rhombus::operator=(const Rhombus &r)
 {
 		cout << "Rhombus - operator =" << endl;
 
-		diagonal1 = r.diagonal1;
-		diagonal2 = r.diagonal2;
+		diagH = r.diagH;
+		diagV = r.diagV;
 
 		/// "this" is the pointer to the current object
 		/// (the one who called the function).
@@ -464,106 +479,135 @@ Rhombus& Rhombus::operator=(const Rhombus &r)
 bool Rhombus::operator==(const Rhombus &r)
 {
 		cout << "Rhombus - operator ==" << endl;
-		return (( r.diagonal1 == diagonal1 && r.diagonal2 == diagonal2 ) ? true : false);
+		return (( r.diagH == diagH && r.diagV == diagV ) ? true : false);
 }
 #+end_src
-
+**** close doxy group
+#+begin_src cpp
+//@}
+#+end_src
 *** Functions
-**** Set functions
-***** SetD1
+**** Open doxy group
 #+begin_src cpp
-///	@brief set diagonal 1 of the rhombus
-///	@param D1 in pixels
-void Rhombus::SetD1(int D1)
+///@{ Functions
+#+end_src
+**** Set functions
+***** Open doxy group
+#+begin_src cpp
+///@{ Set functions
+#+end_src
+***** SetDiagH
+#+begin_src cpp
+///	@brief set horizontal diagonal of the rhombus
+///	@param dH
+void Rhombus::SetDiagH(float dH)
 {
-	if (D1 < 0)
+	if (dH < 0)
 	{
-		cout << "WARNING: Rhombus - SetD1: diagonal 1 should be > 0" << endl;
+		cout << "WARNING: Rhombus - SetDiagH: horizontal diagonal should be > 0" << endl;
 		return;
 	}
-	diagonal1 = D1;
+	diagH = dH;
 }
 #+end_src
-***** SetLength
+***** SetDiagV
 #+begin_src cpp
-///	@brief set diagonal 2 of the rhombus
-///	@param D2 in pixels
-void Rhombus::SetD2(int D2)
+///	@brief set vertical diagonal of the rhombus
+///	@param dV
+void Rhombus::SetDiagV(float dV)
 {
-	if (D2 < 0)
+	if (dV < 0)
 	{
-		cout << "WARNING: Rhombus - SetD2: diagonal 2 should be > 0" << endl;
+		cout << "WARNING: Rhombus - SetDiagV: vertical diagonal should be > 0" << endl;
 		return;
 	}
-	diagonal2 = D2;
+	diagV = dV;
 }
 #+end_src
 ***** SetDim
 #+begin_src cpp
 ///	@brief set both diagonals of the rhombus
-///	@param D1 in pixels
-///	@param D2 in pixels
-void Rhombus::SetDim(int D1, int D2)
+///	@param dH
+///	@param dV
+void Rhombus::SetDim(float dH, float dV)
 {
-	SetD1(D1);
-	SetD2(D2);
+	SetDiagH(dH);
+	SetDiagV(dV);
 }
+#+end_src
+***** Close doxy group
+#+begin_src cpp
+//@}
 #+end_src
 **** Get functions
-***** GetD1
+***** Open doxy group
 #+begin_src cpp
-///	@brief get diagonal 1 of the rhombus
-int Rhombus::GetD1()
-{
-		return diagonal1;
-}
+///@{ Get functions
 #+end_src
-***** GetD2
-#+begin_src cpp
-///	@brief get diagonal 2 of the rhombus
-int Rhombus::GetD2()
-{
-		return diagonal2;
-}
-#+end_src
-***** GetDim
+***** GetDiagonals
 #+begin_src cpp
 ///	@brief get both diagonals of the rhombus
-///	@param d1 diagonal1 in pixels
-///	@param d2 diagonal2 in pixels
-void Rhombus::GetDim(int &d1, int &d2)
+///	@param dH diagH in pixels
+///	@param dV diagV in pixels
+void Rhombus::GetDiagonals(float &dH, float &dV)
 {
-		d1=diagonal1;
-		d2=diagonal2;
+		dH=diagH;
+		dV=diagV;
 }
 #+end_src
-***** GetArea
+***** GetDiagH
 #+begin_src cpp
-///	@brief calculate and return the area of the rhombus
-///	@return the area of the rhombus in square pixels
-int Rhombus::GetArea()
+///	@brief get horizontal diagonal of the rhombus
+///	@return horizontal diagonal of the rhombus
+float Rhombus::GetDiagH()
 {
-		return (int)(diagonal1 * diagonal2)/2;
+		return diagH;
+}
+#+end_src
+***** GetDV
+#+begin_src cpp
+///	@brief get vertical diagonal of the rhombus
+///	@return vertical diagonal of the rhombus
+float Rhombus::GetDiagV()
+{
+		return diagV;
 }
 #+end_src
 ***** GetSide
 #+begin_src cpp
 ///	@brief calculate and return the side of the rhombus
 ///	NB: all 4 sides of a rhombus are equal
-///	@return length of the side of the rhombus, in pixels.
-int Rhombus::GetSide()
+///	@return length of the side of the rhombus
+float Rhombus::GetSide()
 {
-		return (int)(sqrt(diagonal1*diagonal1+diagonal2*diagonal2)/2);
+		return (float)(sqrt(diagH*diagH+diagV*diagV)/2);
+}
+#+end_src
+***** GetArea
+#+begin_src cpp
+///	@brief calculate and return the area of the rhombus
+///	@return the area of the rhombus
+float Rhombus::GetArea()
+{
+		return (float)(diagH * diagV)/2;
 }
 #+end_src
 ***** GetPerimeter
 #+begin_src cpp
 ///	@brief calculate and return the perimeter of the rhombus
-///	@return the perimeter of the rhombus in pixels
-int Rhombus::GetPerimeter()
+///	@return the perimeter of the rhombus.
+float Rhombus::GetPerimeter()
 {
-		return 4*(GetSide());
+		return (float)4*(GetSide());
 }
+#+end_src
+***** Close doxy group
+#+begin_src cpp
+//@}
+#+end_src
+**** Close doxy group
+#+begin_src cpp
+//@}
 #+end_src
 * Main
 :properties:
@@ -637,7 +681,7 @@ The Rectangle B object, called =objRectB=, is created using the *default constru
 #+begin_src cpp
 	/// variables to store and then print length and width.
 	/// They're needed by GetDim (indirect addressing).
-	int wToPrint, lToPrint; wToPrint = lToPrint = (int)0;
+	float wToPrint, lToPrint; wToPrint = lToPrint = 0.;
 
 	/// test GetDim
 	objRectA.GetDim(wToPrint,lToPrint);

@@ -30,7 +30,7 @@ Rectangle::Rectangle(const Rectangle & r)
 /// @brief init constructor
 /// @param w width in pixels
 /// @param h length in pixels
-Rectangle::Rectangle(int w, int l)
+Rectangle::Rectangle(float w, float l)
 {
 	width = 0;
 	length = 0;
@@ -78,9 +78,9 @@ bool Rectangle::operator==(const Rectangle &r)
     //if( r.width == width && r.length == length ) return true; return false;
 }
 
-/// @brief set width of the object
-/// @param w width in pixels
-void Rectangle::SetWidth(int w)
+/// @brief set width of the rectangle
+/// @param w width
+void Rectangle::SetWidth(float w)
 {
 	if (w < 0)
     {
@@ -90,9 +90,9 @@ void Rectangle::SetWidth(int w)
 	width = w;
 }
 
-/// @brief set length of the object
-/// @param l length in pixels
-void Rectangle::SetLength(int l)
+/// @brief set length of the rectangle
+/// @param l length
+void Rectangle::SetLength(float l)
 {
 	if (l < 0)
     {
@@ -102,44 +102,46 @@ void Rectangle::SetLength(int l)
 	length = l;
 }
 
-/// @brief set width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::SetDim(int w, int l)
+/// @brief set width and length of the rectangle
+/// @param w width
+/// @param l length
+void Rectangle::SetDim(float w, float l)
 {
 	SetWidth(w);
 	SetLength(l);
 }
 
 /// @brief get width of the object
-int Rectangle::GetWidth()
+float Rectangle::GetWidth()
 {
     return width;
 }
 
 /// @brief get length of the object
-int Rectangle::GetLength()
+float Rectangle::GetLength()
 {
     return length;
 }
 
 /// @brief get width and length of the object
-/// @param w width in pixels
-/// @param l length in pixels
-void Rectangle::GetDim(int &w, int &l)
+/// @param w width
+/// @param l length
+void Rectangle::GetDim(float &w, float &l)
 {
     w=width;
     l=length;
 }
 
 /// @brief calculate and return the area of the rectangle
-int Rectangle::GetArea()
+/// @return area of the rectangle
+float Rectangle::GetArea()
 {
 		return width * length;
 }
 
 /// @brief calculate and return the perimeter of the rectangle
-int Rectangle::GetPerimeter()
+/// @return perimeter of the rectangle
+float Rectangle::GetPerimeter()
 {
 		return 2 * ( width + length );
 }

@@ -15,38 +15,42 @@ class Rhombus
 {
 
 private:
-	/// the two diagonals exaustively describe a rhombus.
-	int diagonal1;
-	int diagonal2;
+	float diagH;
+	float diagV;
+
+	float Side();
 
 public:
 
+	/// @{ Constructors
 	/// Default constructor
 	Rhombus();
-	/// Copy constructor
-	Rhombus(const Rhombus & R);
 	/// Init constructor
-	Rhombus(int d1, int d2);
+	Rhombus(float dH, float dV);
+	/// Copy constructor
+	Rhombus(const Rhombus &r);
 	/// Destructor
 	~Rhombus();
+	//@}
 
-	/// Operators
-	/// assign
+	///@{ Operators
+	/// =
 	Rhombus& operator=(const Rhombus &r);
 	/// ==
 	bool operator==(const Rhombus &r);
+//@}
 
-	void SetDim(int d1, int d2);
-	void SetD1(int d1);
-	void SetD2(int d2);
+	void SetDim(float dH, float dV);
+	void SetDiagH(float dH);
+	void SetDiagV(float dV);
 
-	void GetDim(int &d1, int &d2);
-	int GetD1();
-	int GetD2();
+	void GetDiagonals(float &dH, float &dV);
+	float GetDiagH();
+	float GetDiagV();
+	float GetSide();
 
-	int GetArea();
-	int GetSide();
-	int GetPerimeter();
+	float GetArea();
+	float GetPerimeter();
 
 };
 

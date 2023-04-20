@@ -15,8 +15,8 @@ class Rectangle
 {
 
 private:
-	int width;
-	int length;
+	float width;
+	float length;
 
 public:
 
@@ -25,26 +25,26 @@ public:
 	/// Copy constructor
 	Rectangle(const Rectangle & R);
 	/// Init constructor
-	Rectangle(int w, int l);
-    /// Destructor
+	Rectangle(float w, float l);
+	/// Destructor
 	~Rectangle();
 
 	/// Operators
-	/// assign
+	/// =
 	Rectangle& operator=(const Rectangle &r);
-	/// isequal
+	/// ==
 	bool operator==(const Rectangle &r);
 
-	void SetDim(int w, int l);
-	void SetLength(int l);
-	void SetWidth(int w);
+	void SetDim(float w, float l);
+	void SetLength(float l);
+	void SetWidth(float w);
 
-	void GetDim(int &w, int &l);
-	int GetLength();
-	int GetWidth();
+	void GetDim(float &w, float &l);
+	float GetLength();
+	float GetWidth();
 
-	int GetArea();
-	int GetPerimeter();
+	float GetArea();
+	float GetPerimeter();
 
 };
 
