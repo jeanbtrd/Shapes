@@ -1,93 +1,172 @@
-///	\file rhombus.cpp
-///	\brief class Rhombus: implementation of the functions
-///
-///	Details.
-
-#include <iostream>
-#include <cmath>
+//---------------------------------------------------------
+/**
+//    @file	rhombus.cpp
+//    @brief	Implementation file for class Rhombus
+*/
+//---------------------------------------------------------
 
 #include "rhombus.h"
 
-///@{ Constructors
+//////////////////////////////////////////////////////////////////////////////
+// fpi
+// memory debug, place after includes
 
-///	@brief default constructor
+#ifdef DBGMEM_CRT
+#undef new
+#define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
+#endif // DBGMEM_CRT
+
+/************************** GLOBAL FUNCTIONS AND VARIABLES ******************/
+
+///////////////////////////////////////////////////////////////////////////
+// Print operator
+ostream & operator << (ostream &o, Rhombus & r)
+{
+	return o;
+}
+
+///////////////////////////////////////////////////////////////////////////
+istream & operator >> (istream &i, Rhombus & r)
+{
+	return i;
+}
+
+/************************** MEMBER FUNCTIONS AND VARIABLES ******************/
+
+///////////////////////////////////////////////////////////////////////////
+// Default Constructor
 Rhombus::Rhombus()
 {
-	cout << "Rhombus - constructor - default" << endl;
-
+	cout << "START:\tRhombus - constructor - default" << endl;
 	diagH = (float)0;
 	diagV = (float)0;
+	cout << "END:\tRhombus - constructor - default" << endl;
 }
 
-///	@brief copy constructor
-///	@param r rhombus to copy.
-Rhombus::Rhombus(const Rhombus & r)
+///////////////////////////////////////////////////////////////////////////
+// Copy Constructor
+Rhombus::Rhombus( const Rhombus & r)
 {
-	cout << "Rhombus - constructor - copy" << endl;
-
-    diagH = r.diagH;
-    diagV = r.diagV;
+	cout << "START:\tRhombus - constructor - copy" << endl;
+	Init(r);
+	cout << "END:\tRhombus - constructor - copy" << endl;
 }
 
-///	@brief init constructor
-///	@param dh horizontal diagonal in pixels
-///	@param dv vertical diagonal in pixels
-Rhombus::Rhombus(float dh, float dv)
-{
-	diagH = (float)0;
-	diagV = (float)0;
-
-	cout << "Rhombus - constructor" << endl;
-
-	if (dh <= (float)0) cout << "WARNING: Rhombus - constructor: horizontal diagonal should be > 0" << endl;
-	else diagH = dh;
-
-	if (dv <= (float)0) cout << "WARNING: Rhombus - constructor: vertical diagonal should be > 0" << endl;
-	else diagV = dv;
-}
-
-///	@brief destructor
+///////////////////////////////////////////////////////////////////////////
+// Destructor
 Rhombus::~Rhombus()
 {
-	cout << "Rhombus - destructor" << endl;
+	cout << "START:\tRhombus - Destructor" << endl;
+	Reset();
+	cout << "END:\tRhombus - Destructor" << endl;
 }
 
-//@}
-
-///@{ operators
-
-///	@brief overload of assign operator
-///	@param reference to the object on the right height of the operator
-///	@return reference to the object on the left height of the operator
-Rhombus& Rhombus::operator=(const Rhombus &r)
+///////////////////////////////////////////////////////////////////////////
+// Init default initializer
+void Rhombus::Init()
 {
-		cout << "Rhombus - operator =" << endl;
-
-		diagH = r.diagH;
-		diagV = r.diagV;
-
-		/// "this" is the pointer to the current object
-		/// (the one who called the function).
-		return *this;
+	cout << "START:\tRhombus - Init - default" << endl;
+	Reset();
+	cout << "END:\tRhombus - Init - default" << endl;
 }
 
-///	@brief overload of operator ==
-///	@param reference to the object on the right height of the operator
-///	@return true if the two objects have the same width and the same length, false if not.
-bool Rhombus::operator==(const Rhombus &r)
+///////////////////////////////////////////////////////////////////////////
+// Init copy initializer
+void Rhombus::Init(const Rhombus &r)
 {
-		cout << "Rhombus - operator ==" << endl;
-		return (( r.diagH == diagH && r.diagV == diagV ) ? true : false);
+	cout << "START:\tRhombus - Init - copy" << endl;
+	Reset();
+    diagH = r.diagH;
+    diagV = r.diagV;
+	cout << "END:\tRhombus - Init - copy" << endl;
 }
 
-//@}
+///////////////////////////////////////////////////////////////////////////
+// Object eraser
+void Rhombus::Reset()
+{
+	cout << "START:\tRhombus - Reset" << endl;
+	diagH = (float)0;
+	diagV = (float)0;
+	cout << "END:\tRhombus - Reset" << endl;
+}
 
-///@{ Functions
+///////////////////////////////////////////////////////////////////////////
+// Overloading of assignment operator
+Rhombus & Rhombus::operator=( const Rhombus & r)
+{
+	Reset();
+	Init(r);
+	return *this;
+}
 
-///@{ Set functions
+///////////////////////////////////////////////////////////////////////////
+// Overloading of comparison operator
+bool Rhombus::operator ==( const Rhombus & X)
+{
 
-///	@brief set horizontal diagonal of the rhombus
-///	@param dH
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Error messaging routine
+void Rhombus::ErrorMessage( const char *string )
+{
+	printf("%s\n", string);
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Debug routine
+void Rhombus::Dump()
+{
+	cout << "diagH:\t" << diagH << endl;
+	cout << "diagV:\t" << diagV << endl;
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+// ACCESS FUNCTIONS
+//
+/// Get_
+void Rhombus::GetDiagonals(float &dH, float &dV)
+{
+	dH=diagH;
+	dV=diagV;
+}
+
+float Rhombus::GetDiagH()
+{
+	return diagH;
+}
+
+float Rhombus::GetDiagV()
+{
+	return diagV;
+}
+
+float Rhombus::GetSide()
+{
+	return (float)(sqrt(diagH*diagH+diagV*diagV)/2);
+}
+
+float Rhombus::Area()
+{
+	return (float)((diagH*diagV)/2);
+}
+
+
+float Rhombus::Perimeter()
+{
+	return (float)4*(GetSide());
+}
+
+/// Set_
+void Rhombus::SetDim(float dH, float dV)
+{
+	SetDiagH(dH);
+	SetDiagV(dV);
+}
+
 void Rhombus::SetDiagH(float dH)
 {
 	if (dH < 0)
@@ -98,76 +177,12 @@ void Rhombus::SetDiagH(float dH)
 	diagH = dH;
 }
 
-///	@brief set vertical diagonal of the rhombus
-///	@param dV
 void Rhombus::SetDiagV(float dV)
 {
 	if (dV < 0)
 	{
-		cout << "WARNING: Rhombus - SetDiagV: vertical diagonal should be > 0" << endl;
+		cout << "WARNING: Rhombus - SetDiagH: horizontal diagonal should be > 0" << endl;
 		return;
 	}
 	diagV = dV;
 }
-
-///	@brief set both diagonals of the rhombus
-///	@param dH
-///	@param dV
-void Rhombus::SetDim(float dH, float dV)
-{
-	SetDiagH(dH);
-	SetDiagV(dV);
-}
-
-//@}
-
-///@{ Get functions
-
-///	@brief get both diagonals of the rhombus
-///	@param dH diagH in pixels
-///	@param dV diagV in pixels
-void Rhombus::GetDiagonals(float &dH, float &dV)
-{
-		dH=diagH;
-		dV=diagV;
-}
-
-///	@brief get horizontal diagonal of the rhombus
-///	@return horizontal diagonal of the rhombus
-float Rhombus::GetDiagH()
-{
-		return diagH;
-}
-
-///	@brief get vertical diagonal of the rhombus
-///	@return vertical diagonal of the rhombus
-float Rhombus::GetDiagV()
-{
-		return diagV;
-}
-
-///	@brief calculate and return the side of the rhombus
-///	NB: all 4 sides of a rhombus are equal
-///	@return length of the side of the rhombus
-float Rhombus::GetSide()
-{
-		return (float)(sqrt(diagH*diagH+diagV*diagV)/2);
-}
-
-///	@brief calculate and return the area of the rhombus
-///	@return the area of the rhombus
-float Rhombus::GetArea()
-{
-		return (float)(diagH * diagV)/2;
-}
-
-///	@brief calculate and return the perimeter of the rhombus
-///	@return the perimeter of the rhombus.
-float Rhombus::GetPerimeter()
-{
-		return (float)4*(GetSide());
-}
-
-//@}
-
-//@}
