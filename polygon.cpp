@@ -1,110 +1,120 @@
-//---------------------------------------------------------
-/**
-//    @file	polygon.cpp
-//    @brief	Implementation file for class Polygon
-*/
-//---------------------------------------------------------
-
 #include "polygon.h"
 
-//////////////////////////////////////////////////////////////////////////////
-// fpi
-// memory debug, place after includes
-
-#ifdef DBGMEM_CRT
-#undef new
-#define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
-#endif // DBGMEM_CRT
-
-/************************** GLOBAL FUNCTIONS AND VARIABLES ******************/
-
-///////////////////////////////////////////////////////////////////////////
-// Print operator
-ostream & operator << (ostream &o, Polygon & p)
-{
-
-	return o;
-}
-
-///////////////////////////////////////////////////////////////////////////
-istream & operator >> (istream &i, Polygon & p)
-{
-
-	return i;
-}
-
-/************************** MEMBER FUNCTIONS AND VARIABLES ******************/
-
-///////////////////////////////////////////////////////////////////////////
-// Default Constructor
+/// @brief default constructor
 Polygon::Polygon()
 {
+	cout << "Polygon - constructor - default" << endl;
 
+	area = 0.;
+	perimeter = 0.;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Copy Constructor
-Polygon::Polygon(Polygon & p)
+/// @brief copy constructor
+/// @param p reference to the polygon that should be copied.
+Polygon::Polygon(const Polygon &p)
 {
+	cout << "Polygon - copy constructor" << endl;
 	Init(p);
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Destructor
+/// @brief destructor
 Polygon::~Polygon()
 {
+	cout << "Polygon - destructor" << endl;
 	Reset();
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Init default initializer
-void Polygon::Init()
+/// @brief overload of assign operator.
+/// @param p reference to the polygon on the right of the operator
+/// @return reference to the object on the left side of the operator
+///
+/// What does it mean for a polygon to become the same as another? It absolutely depends on the sub-class of the two polygons.\n\n
+/// Best bet for now is to make it do nothing.
+Polygon& Polygon::operator=(const Polygon &p)
 {
-
-}
-
-///////////////////////////////////////////////////////////////////////////
-// Init copy initializer
-void Polygon::Init(Polygon &p)
-{
-	Reset();
-
-}
-
-///////////////////////////////////////////////////////////////////////////
-// Object eraser
-void Polygon::Reset()
-{
-
-}
-
-///////////////////////////////////////////////////////////////////////////
-// Overloading of assignment operator
-Polygon & Polygon::operator =(Polygon & p)
-{
-	Reset();
-	Init(p);
 	return *this;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Overloading of comparison operator
-bool Polygon::operator ==(Polygon & p)
+/// @brief overload of comparison operator.
+/// @param p reference to the polygon on the right side of the operator
+/// @return always false.
+///
+/// What does it mean for two polygons to be the same? It absolutely depends on the sub-class of the two polygons.\n\n
+/// Best bet for now is to make it return always false.
+bool Polygon::operator==(const Polygon &r)
 {
-
-	return true;
+	return false;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Error messaging routine
-void Polygon::ErrorMessage( const char *string )
+
+/// @brief default initialization of the polygon.
+void Polygon::Init()
 {
-	printf("%s\n", string);
+	Reset();
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Debug routine
+
+/// @brief Initialization of the polygon as a copy of a polygon.
+/// @param p reference to the polygon that should be copied.
+///
+/// What does it mean for a polygon to be crated as a copy of another? It absolutely depends on the sub-class of the two polygons.\n\n
+/// Best bet for now is to make it do nothing.
+void Polygon::Init(const Polygon &p)
+{
+
+}
+
+/// @brief Total reset of the polygon.
+void Polygon::Reset()
+{
+	perimeter = 0.;
+	area = 0.;
+}
+
+/// @brief Get the area of the polygon.
+/// @return area
+///
+/// This runs the `Area()` function defined in the sub-class of polygon which specifies the underlying object.\n
+/// NB: being a pure virtual describer of the class polygon, it is assured that every possible subclass of polygon has it.
+float Polygon::GetArea()
+{
+	area = Area();
+	return area;
+}
+
+/// @brief Get the perimeter of the polygon.
+/// @return perimeter
+///
+/// This runs the `Perimeter()` function defined in the sub-class of polygon which specifies the underlying object.\n
+/// NB: being a pure virtual describer of the class polygon, it is assured that every possible subclass of polygon has it.
+float Polygon::GetPerimeter()
+{
+	perimeter = Perimeter();
+	return perimeter;
+}
+
+/// @brief Write an error message.
+/// @param string message to be printed.
+void Polygon::ErrorMessage(const char *string)
+{
+	cout << endl << "ERROR -- Polygon --";
+	cout << string << endl;
+}
+
+/// @brief Write a warning message.
+/// @param string message to be printed.
+void Polygon::WarningMessage(const char *string)
+{
+	cout << endl << "WARNING -- Polygon --";
+	cout << string << endl;
+}
+
+
+/// @brief For debugging: print all about the polygon.
 void Polygon::Dump()
 {
-
+	cout << endl;
+	cout << "Perimeter = " << GetPerimeter() << endl;
+	cout << "Area = " << GetArea() << endl;
+	cout << endl;
 }

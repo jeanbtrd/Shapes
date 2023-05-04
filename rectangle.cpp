@@ -1,42 +1,14 @@
-//---------------------------------------------------------
-/**
-//    @file	rectangle.cpp
-//    @brief	Implementation file for class Rectangle
+/*!
+@file	rectangle.cpp
+@brief	Implementation file for class Rectangle
 */
-//---------------------------------------------------------
 
 #include "rectangle.h"
 
-//////////////////////////////////////////////////////////////////////////////
-// fpi
-// memory debug, place after includes
-
-#ifdef DBGMEM_CRT
-#undef new
-#define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
-#endif // DBGMEM_CRT
-
-/************************** GLOBAL FUNCTIONS AND VARIABLES ******************/
-
 ///////////////////////////////////////////////////////////////////////////
-// Print operator
-ostream & operator << (ostream &o, Rectangle & X)
-{
+// Constructors - Destructor
 
-	return o;
-}
 
-///////////////////////////////////////////////////////////////////////////
-istream & operator >> (istream &i, Rectangle & X)
-{
-
-	return i;
-}
-
-/************************** MEMBER FUNCTIONS AND VARIABLES ******************/
-
-///////////////////////////////////////////////////////////////////////////
-// Default Constructor
 Rectangle::Rectangle()
 {
 	cout << "START:\tRectangle - constructor - default" << endl;
@@ -45,8 +17,6 @@ Rectangle::Rectangle()
 
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Copy Constructor
 Rectangle::Rectangle( const Rectangle & r)
 {
 	cout << "START:\tRectangle - constructor - copy" << endl;
@@ -54,8 +24,7 @@ Rectangle::Rectangle( const Rectangle & r)
 	cout << "END:\tRectangle - constructor - copy" << endl;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Init Constructor
+
 Rectangle::Rectangle(float w, float l)
 {
 	cout << "START:\tRectangle - constructor - init" << endl;
@@ -70,8 +39,6 @@ Rectangle::Rectangle(float w, float l)
 	cout << "END:\tRectangle - constructor - init" << endl;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Destructor
 Rectangle::~Rectangle()
 {
 	cout << "START:\tRectangle - destructor" << endl;
@@ -80,7 +47,48 @@ Rectangle::~Rectangle()
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Init default initializer
+// Operators
+
+/// @name Assignment operator
+/// @param &r reference to the rectangle to assign
+/// @return reference to the rectangle assigned (for concatenating)
+Rectangle& Rectangle::operator=( const Rectangle & r)
+{
+	Reset();
+	Init(r);
+	return *this;
+}
+
+/// @name Comparison operator
+/// @param &r reference to the rectangle to check for comparison
+/// @return boolean: true if the two rectangles coincide, false if not
+bool Rectangle::operator==( const Rectangle & r)
+{
+    return (( r.width == width && r.length == length ) ? true : false);
+}
+
+
+/// @name Insertion operator
+/// @param o stream where to insert
+/// @param r rectangle to insert
+ostream & operator << (ostream &o, Rectangle & r)
+{
+	return o;
+}
+
+/// @name Extraction operator
+/// @param o stream where to extract from
+/// @param r rectangle to extract
+istream & operator >> (istream &i, Rectangle & X)
+{
+	return i;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+// Basic handling
+
 void Rectangle::Init()
 {
 	cout << "START:\tRectangle - Init - Default" << endl;
@@ -88,8 +96,7 @@ void Rectangle::Init()
 	cout << "END:\tRectangle - Init - Default" << endl;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Init copy initializer
+/// @param r rectangle to be cloned
 void Rectangle::Init(const Rectangle &r)
 {
 	cout << "START:\tRectangle - Init - copy" << endl;
@@ -102,8 +109,6 @@ void Rectangle::Init(const Rectangle &r)
 	cout << "END:\tRectangle - Init - copy" << endl;
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Object eraser
 void Rectangle::Reset()
 {
 	cout << "START:\tRectangle - Reset" << endl;
@@ -113,34 +118,47 @@ void Rectangle::Reset()
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Overloading of assignment operator
-Rectangle& Rectangle::operator=( const Rectangle & r)
+// Interface to parent class.
+
+/// @brief calculate and return the area of the rectangle
+/// @return area of the rectangle
+float Rectangle::Area()
 {
-	Reset();
-	Init(r);
-	return *this;
+	return (float)(width*length);
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Overloading of comparison operator
-bool Rectangle::operator==( const Rectangle & r)
+/// @brief calculate and return the perimeter of the rectangle
+/// @return perimeter of the rectangle
+float Rectangle::Perimeter()
 {
-    return (( r.width == width && r.length == length ) ? true : false);
+	return (float)(2*(width+length));
 }
 
-///////////////////////////////////////////////////////////////////////////
-// Error messaging routine
-void Rectangle::ErrorMessage( const char *string )
-{
-	printf("%s\n", string);
-}
 
 ///////////////////////////////////////////////////////////////////////////
-// Debug routine
-void Rectangle::Dump()
+// Access functions
+
+/// @brief get width of the rectangle
+/// @return width of the rectangle
+float Rectangle::GetWidth()
 {
-	cout << "Lenght: " << length  << endl;
-	cout << "Width: " << width  << endl;
+    return width;
+}
+
+/// @brief get length of the rectangle
+/// @return length of the rectangle
+float Rectangle::GetLength()
+{
+    return length;
+}
+
+/// @brief get width and length of the rectangle
+/// @param w width
+/// @param l length
+void Rectangle::GetDim(float &w, float &l)
+{
+    w=width;
+    l=length;
 }
 
 
@@ -177,37 +195,28 @@ void Rectangle::SetDim(float w, float l)
 	SetLength(l);
 }
 
-/// @brief get width of the object
-float Rectangle::GetWidth()
+///////////////////////////////////////////////////////////////////////////
+// Debug and serialization
+
+/// @brief Write an error message.
+/// @param string message to be printed.
+void Rectangle::ErrorMessage( const char *string )
 {
-    return width;
+	cout << endl << "ERROR -- Rectangle --";
+	cout << string << endl;
 }
 
-/// @brief get length of the object
-float Rectangle::GetLength()
+/// @brief Write a warning message.
+/// @param string message to be printed.
+void Rectangle::WarningMessage(const char *string)
 {
-    return length;
+	cout << endl << "WARNING -- Rectangle --";
+	cout << string << endl;
 }
 
-/// @brief get width and length of the object
-/// @param w width
-/// @param l length
-void Rectangle::GetDim(float &w, float &l)
+/// @brief For debugging: print all about the rectangle.
+void Rectangle::Dump()
 {
-    w=width;
-    l=length;
-}
-
-/// @brief calculate and return the area of the rectangle
-/// @return area of the rectangle
-float Rectangle::Area()
-{
-	return (float)(width*length);
-}
-
-/// @brief calculate and return the perimeter of the rectangle
-/// @return perimeter of the rectangle
-float Rectangle::Perimeter()
-{
-	return (float)(2*(width+length));
+	cout << "Lenght: " << length  << endl;
+	cout << "Width: " << width  << endl;
 }

@@ -1,110 +1,102 @@
-//---------------------------------------------------------
-/**
-//    @file	rhombus.h
-//    @brief	Declaration of the class Rhombus
-//
+/*!
+@file	rhombus.h
+@brief	Declaration of the class Rhombus
 */
-//---------------------------------------------------------
 
 #ifndef Rhombus__DEF
 #define Rhombus__DEF
 
-// A Rhombus is a specific type of polygon.
+#include<math.h>
+
 #include "polygon.h"
 
-/**
-@class Rhombus
-@brief Rhombus is a class describing a polygon with four sides which are parallel in couples.
+/*!
+@class	Rhombus
+@brief	Rhombus is a class describing a polygon with four sides which are parallel in couples.
 
 A rhombus can be completely described by using the length of its diagonals: the segments connecting the two couples of non-adjacent (ie not sharing a rhombus side) vertices.
 */
 class Rhombus : public Polygon
 {
-
-	///////////////////////////// PRIVATE   Segment
 private:
 	float diagH;
 	float diagV;
 
 	float Side();
-	///////////////////////////// PROTECTED Segment
-protected:
 
-	///////////////////////////// PUBLIC    Segment
 public:
 
-	/// @name CONSTRUCTORS/DESTRUCTOR
+	/// @defgroup Constructors Constructors
+	/// @{
+	/// @name Constructors
 	/// @{
 
 	/// Default constructor
 	Rhombus();
-
 	/// Copy constructor
 	Rhombus(const Rhombus &r);
-
 	/// Init constructor
-	Rhombus( float w, float l);
-
+	Rhombus( float dH, float dV);
 	/// Destructor
 	~Rhombus();
-
+	//@}
 	//@}
 
-	/// @name OPERATORS
+	/// @name Operators.
 	/// @{
 
-	/// Assignment overloading
+	/// Assignment
 	Rhombus& operator=(const Rhombus &r);
-
-	/// Comparison overloading
+	/// Comparison
 	bool operator==(const Rhombus &r);
-
-	/// Print operator
+	/// Stream insertion
 	friend ostream & operator << ( ostream &o, Rhombus &r);
-
-	/// Input operator
+	/// Stream extraction
 	friend istream & operator >> ( istream &i, Rhombus &r);
-
 	//@}
 
-	/// @name BASIC HANDLING
+	/// @name Basic handling.
 	/// @{
 
-	/// Default initialization
+	/// Init default initializer
 	void Init();
-
-	/// Copy initialization
+	/// Init copy initializer
 	void Init( const Rhombus &r);
-
-	/// Object erasure
+	/// Object eraser
 	void Reset();
-
-	/// Outputs internal errors
-	void ErrorMessage(const char *string);
-
 	//@}
 
-	// ACCESS FUNCTIONS
-	/// Get_
+
+	/// @name Interface to parent class
+	/// @{
+	float Area();
+	float Perimeter();
+	///@}
+
+
+	/// @defgroup AccessFunctions Access Functions
+	/// @{
+	/// @name Getters
+	/// @{
 	void GetDiagonals(float &dH, float &dV);
 	float GetDiagH();
 	float GetDiagV();
 	float GetSide();
-	// As a class derivated from polygon, Area and Perimeter are mandatory:
-	float Area();
-	float Perimeter();
-	/// Set_
-	void SetDim(float dH, float dV);
+	/// @}
+	/// @name Setters.
+	/// @{
 	void SetDiagH(float dH);
 	void SetDiagV(float dV);
+	void SetDim(float dH, float dV);
+	/// @}
+	/// @}
 
-	/// @name DEBUG and SERIALIZATION
+	/// @name Debug and serialization
 	/// @{
-
-	/// Object printout for diagnostic
+	void ErrorMessage(const char *string);
+	void WarningMessage(const char *string);
 	void Dump();
-
-	//@}
+	///@}
 
 };
 

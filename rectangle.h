@@ -1,115 +1,98 @@
-//---------------------------------------------------------
-/**
-//    @file	rectangle.h
-//    @brief	Declaration of the class Rectangle
-//
+/*!
+@file	rectangle.h
+@brief	Declaration of the class Rectangle
 */
-//---------------------------------------------------------
 
 #ifndef Rectangle__DEF
 #define Rectangle__DEF
 
-#include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
 
-
-// A Rectangle is a specific type of polygon.
 #include "polygon.h"
 
-/**
+/*!
 @class Rectangle
-@brief Rectangle is a class describing a polygon with four rect angles.
+@brief Rectangle is a class describing a polygon with four rect (90 deg) angles.
 
-The Rectangle having four rect angles implies it has four sides, which are parallel in couples.
+The Rectangle having four rect angles implies it having four sides, which are parallel in couples.
 */
 class Rectangle : public Polygon
 {
-
-	///////////////////////////// PRIVATE   Segment
 private:
 	float width;
 	float length;
-	///////////////////////////// PROTECTED Segment
-protected:
 
-	///////////////////////////// PUBLIC    Segment
 public:
 
-	/// @name CONSTRUCTORS/DESTRUCTOR
+	/// @defgroup Constructors Constructors
+	/// @{
+	/// @name Constructors
 	/// @{
 
 	/// Default constructor
 	Rectangle();
-
 	/// Copy constructor
 	Rectangle(const Rectangle & r);
-
 	/// Init constructor
 	Rectangle( float w, float l);
-
 	/// Destructor
 	~Rectangle();
+	///@}
+	///@}
 
-	//@}
-
-	/// @name OPERATORS
+	/// @name Operators
 	/// @{
 
-	/// Assignment overloading
+	/// Assignment
 	Rectangle& operator=(const Rectangle &r);
-
-	/// Comparison overloading
+	/// Comparison
 	bool operator==(const Rectangle &r);
-
-	/// Print operator
+	/// Stream insertion
 	friend ostream & operator << ( ostream &o, Rectangle &r);
-
-	/// Input operator
+	/// Stream extraction
 	friend istream & operator >> ( istream &i, Rectangle &r);
+	/// @}
 
-	//@}
-
-	/// @name BASIC HANDLING
+	/// @name Basic handling
 	/// @{
 
-	/// Default initialization
+	/// Init default initializer
 	void Init();
-
-	/// Copy initialization
+	/// Init copy initializer
 	void Init( const Rectangle &r);
-
-	/// Object erasure
+	/// Object eraser
 	void Reset();
+	/// @}
 
-	/// Outputs internal errors
-	void ErrorMessage(const char *string);
 
-	//@}
+	/// @name Interface to parent class
+	/// @{
+	float Area();
+	float Perimeter();
+	/// @}
 
-	// ACCESS FUNCTIONS
-	/// Get_
+	/// @defgroup AccessFunctions Access Functions
+	/// @{
+	/// @name Getters
+	/// @{
 	void GetDim(float &w, float &l);
 	float GetLength();
 	float GetWidth();
-
-	// As a class derivated from polygon, Area and Perimeter are mandatory.
-	float Area();
-	float Perimeter();
-	/// Set_
-	void SetDim(float w, float l);
+	/// @}
+	/// @name Setters
+	/// @{
 	void SetLength(float l);
 	void SetWidth(float w);
+	void SetDim(float w, float l);
+	/// @}
+	/// @}
 
-	/// @name DEBUG and SERIALIZATION
+
+	/// @name Debug and serialization
 	/// @{
-
-	/// Object printout for diagnostic
+	void ErrorMessage(const char *string);
+	void WarningMessage(const char *string);
 	void Dump();
-
-	//@}
+	///@}
 
 };
 
